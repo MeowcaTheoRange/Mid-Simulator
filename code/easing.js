@@ -146,7 +146,7 @@ export function tween(func, attrs, timeLen, minVal, maxVal, ease, type, onFinish
 	var upd = onUpdate(() => {
 		switch (type(time(), stTime, timeLen)) {
 			case "CALLBACK":
-				for (h in attrs) {
+				for (let h in attrs) {
 					func[attrs[h]] = maxVal;
 				}
 				upd();
@@ -155,7 +155,7 @@ export function tween(func, attrs, timeLen, minVal, maxVal, ease, type, onFinish
 				stTime = time();
 				break;
 			case "CONTINUE":
-				for (h in attrs) {
+				for (let h in attrs) {
 					func[attrs[h]] = minVal;
 				}
 				break;
@@ -168,7 +168,7 @@ export function tween(func, attrs, timeLen, minVal, maxVal, ease, type, onFinish
 			default:
 				break;
 		}
-		for (i in attrs) {
+		for (let i in attrs) {
 			func[attrs[i]] = lerp(minVal, maxVal, ease((time() - stTime) / timeLen));
 		}
 	});

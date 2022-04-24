@@ -11,7 +11,7 @@ kaboom({
 });
 
 load(new Promise((resolve, reject) => {
-	loadFont("unscii", "fonts/unscii_8x8.png", 8, 8, {chars: " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"});
+	loadFont("unscii", "sprites/unscii_8x8.png", 8, 8, {chars: " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"});
 	// Music
 	loadSound("tutorial", "sounds/Getting it Done.mp3"); //135
 	loadSound("faith", "sounds/The Friendly Faith Plate.mp3"); //120
@@ -21,6 +21,7 @@ load(new Promise((resolve, reject) => {
 	// 
 	
 	// Sounds
+	loadSound("nullHit", "sounds/nullHit.mp3");
 	loadSound("score", "sounds/score.mp3");
 	loadSound("metro", "sounds/metro.wav");
 	loadSound("explode", "sounds/explode.mp3");
@@ -477,7 +478,7 @@ scene("Game", (arr) => {
 	])
 	onUpdate(() => {
 		if (health > 1) health = 1;
-		if (health < 0) {health = 0;go("Lose", score);music.stop();}
+		if (health < 0) {health = 0;go("Lose", score, arr);music.stop();}
 		if (music.time() > music.duration() && health >= 0) {go("Title");}
 		strumLine = lerp(18, width() / 2, health);
 		noteClick.pos.x = strumLine - 5;
@@ -550,6 +551,11 @@ scene("Game", (arr) => {
 		}
 	});
 	onKeyPress("space", () => {judgeHitsLol()});
+	onKeyPress("backspace", () => {
+		underlay.stop();
+		music.stop();
+		go("Help")
+	});
 	onKeyPress("a", () => {autoplay = !autoplay});
 	onKeyPress("d", () => {debugMode = !debugMode});
 	onClick(() => {judgeHitsLol()});
@@ -696,6 +702,7 @@ scene("Game", (arr) => {
 	}
 	function judgeHitsLol() {
 		var iv = false;
+		var hits = 0;
 		every("note", (j) => {
 			if (!iv) {
 				if (!j.empty) {
@@ -703,6 +710,7 @@ scene("Game", (arr) => {
 					var theColor = WHITE;
 					if(j.pos.x >= strumLine - 20) {
 						if(j.pos.x <= strumLine + 22) {
+							hits++;
 							iv = true;
 							destroy(j); //Destroys note. No score.
 							noteClick.play("click");
@@ -718,17 +726,15 @@ scene("Game", (arr) => {
 							str = "Perfect!";
 							theColor = MAGENTA;
 						}
-						if(j.pos.x <= strumLine) {
+						if(j.pos.x <= strumLine + 5) {
 							score += 50;
 							health += 0.02;
-							str = "Marvelous!";
-							theColor = YELLOW;
+							str = "Perfect!!";
 						}
 						if(j.pos.x <= strumLine - 3) {
 							score += 50;
 							health -= 0.01;
 							str = "Perfect!";
-							theColor = MAGENTA;
 						}
 						if(j.pos.x <= strumLine - 8) {
 							score -= 100;
@@ -755,6 +761,9 @@ scene("Game", (arr) => {
 				}
 			}
 		});
+		if (hits <= 0) {
+			play("nullHit");
+		}
 	}
 	function beatHit() {
 		every("dances", (obj) => {
@@ -958,7 +967,7 @@ scene("Title", () => {
 	onTouchStart(() => {go("Help", ["tutorial"]);/*losemus.stop();*/});
 });
 
-scene("Lose", (score) => {
+scene("Lose", (score, song) => {
 	const lost = add([
     sprite("jellybeanFail"),
 		"dances",
@@ -985,9 +994,8 @@ scene("Lose", (score) => {
   	  pos: vec2(0, height() - 30)
 		});
 	})
-	onKeyPress("space", () => {go("Title");losemus.stop();});
-	onClick(() => {go("Title");losemus.stop();});
-	onTouchStart(() => {go("Title");losemus.stop();});
+	onKeyPress("space", () => {go("Game", song);losemus.stop();});
+	onClick(() => {go("Game", song);losemus.stop();});
 });
 
 scene("Chart", (song) => {
