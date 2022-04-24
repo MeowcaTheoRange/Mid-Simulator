@@ -1,4 +1,5 @@
 import kaboom from "kaboom"
+import { easings, tween, tweentypes } from "./easing.js"
 
 // initialize context
 kaboom({
@@ -14,6 +15,8 @@ load(new Promise((resolve, reject) => {
 	// Music
 	loadSound("tutorial", "sounds/Getting it Done.mp3"); //135
 	loadSound("faith", "sounds/The Friendly Faith Plate.mp3"); //120
+	loadSound("sonic", "sounds/SonicInMidSim.wav"); //139
+	loadSound("green", "sounds/GreenHill.wav"); //139
 	loadSound("gameover", "sounds/gameover.mp3");
 	// 
 	
@@ -58,6 +61,7 @@ load(new Promise((resolve, reject) => {
 	loadSound("hitsoundCarterRedacted", "sounds/hitsoundJellyBean.wav");
 	loadSound("hitsoundMarc", "sounds/hitsoundJellyBean.wav");
 	loadSound("hitsoundRedVelvety", "sounds/hitsoundRedVelvety.wav");
+	loadSound("hitsoundSonicAndTails", "sounds/hitsoundJellyBean.wav");
 	loadSound("hitsoundMarkyMark", "sounds/burp.mp3");
 	loadSprite("JellyBeanPre", "sprites/previews/JellyBeanPre.png");
 	loadSprite("RedVelvetyPre", "sprites/previews/RedVelvetyPre.png");
@@ -65,6 +69,7 @@ load(new Promise((resolve, reject) => {
 	loadSprite("CarterRedactedPre", "sprites/previews/CarterRedactedPre.png");
 	loadSprite("MarcPre", "sprites/previews/MarcPre.png");
 	loadSprite("FaithPlatePre", "sprites/previews/FaithPlatePre.png");
+	loadSprite("SonicAndTailsPre", "sprites/previews/SonicAndTailsPre.png");
 	// 
 	
 	// Cake/tutorial
@@ -213,6 +218,138 @@ load(new Promise((resolve, reject) => {
 	    },
 	})
 	// 
+
+	// Sonic In Mid Sim/sonic
+	loadSprite("sonicBG0", "sprites/SonicBG.png", {
+	    sliceX: 3,
+	    sliceY: 3,
+	    anims: {
+	        idle: {
+	            from: 0,
+	            to: 6,
+							speed: 10,
+							loop: true
+	        }
+	    },
+	});
+	loadSprite("sonicFG0", "sprites/SonicFG.png", {
+	    sliceX: 3,
+	    sliceY: 3,
+	    anims: {
+	        idle: {
+	            from: 0,
+	            to: 0,
+							speed: 20
+	        }
+	    },
+	});
+	loadSprite("SonicAndTailssonic0", "sprites/SonicMidSim.png", {
+	    sliceX: 3,
+	    sliceY: 4,
+	    anims: {
+	        idle: {
+	            from: 0,
+	            to: 6,
+							speed: 20
+	        },
+	        talk: {
+	            from: 7,
+	            to: 8,
+							speed: 20
+	        },
+	        miss: {
+	            from: 9,
+	            to: 11,
+							speed: 10
+	        },
+	    },
+	});
+	loadSprite("SonicAndTailssonic1", "sprites/TailsMidSim.png", {
+	    sliceX: 3,
+	    sliceY: 9,
+	    anims: {
+	        idle: {
+	            from: 0,
+	            to: 15,
+							speed: 20
+	        },
+	        talk: {
+	            from: 16,
+	            to: 23,
+							speed: 20
+	        },
+	        miss: {
+	            from: 24,
+	            to: 26,
+							speed: 10
+	        },
+	    },
+	});
+	loadSprite("greenBG0", "sprites/SonicBG.png", {
+	    sliceX: 3,
+	    sliceY: 3,
+	    anims: {
+	        idle: {
+	            from: 0,
+	            to: 6,
+							speed: 10,
+							loop: true
+	        }
+	    },
+	});
+	loadSprite("greenFG0", "sprites/SonicFG.png", {
+	    sliceX: 3,
+	    sliceY: 3,
+	    anims: {
+	        idle: {
+	            from: 0,
+	            to: 0,
+							speed: 20
+	        }
+	    },
+	});
+	loadSprite("SonicAndTailsgreen0", "sprites/SonicMidSim.png", {
+	    sliceX: 3,
+	    sliceY: 4,
+	    anims: {
+	        idle: {
+	            from: 0,
+	            to: 6,
+							speed: 20
+	        },
+	        talk: {
+	            from: 7,
+	            to: 8,
+							speed: 20
+	        },
+	        miss: {
+	            from: 9,
+	            to: 11,
+							speed: 10
+	        },
+	    },
+	});
+	loadSprite("SonicAndTailsgreen1", "sprites/TailsMidSim.png", {
+	    sliceX: 3,
+	    sliceY: 9,
+	    anims: {
+	        idle: {
+	            from: 0,
+	            to: 15,
+							speed: 20
+	        },
+	        talk: {
+	            from: 16,
+	            to: 23,
+							speed: 20
+	        },
+	        miss: {
+	            from: 24,
+	            to: 26,
+							speed: 10
+	        },
+	    },
+	});
 	
 	resolve("All assets loaded.");
 }))
@@ -229,6 +366,18 @@ var charts = {
 		120, 
 		"................................................................................................................................J...J...J...JJJJJ...J...J...J...J.J.J.J.J.J.J.J.JJJJJJJJJ.J.J.JJJ.J.J.J.J.J.JJJJJ.JJJ.J.J.J.J.J.J.JJJ.JJJ.J.J.J.JJJJJJJJJJJJJJJJJ.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.JJJ.JJJ.JJJ.JJJ.JJJ.J.J.J.J.JJJ.J.JJJJJJJJJJJJJ.J.J.J.JJJJJ.J.J.J.J.J.J.J.JJJJJ.J.J.J.J.JJ.J..J.JJJ.JJJ.J.J.JJJ.JJJ.J.J.J.JJJJJ.J.J.JJJ.JJJJJJJJJJJJJJJJJ.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.J.J.J.J.JJJ.JJJJ.JJ.J.J.J.JJ..J...J.J.J.J.J.J.JJJJJJJJJJJJJ.J.J.J.J.J.J.J.J.J.JJJJJ.J.J.J.J.J.J.J.J...J...J.J.J.J.JJJJJJJJJ.J.J.J.J.J.J.JJJ.J.JJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJJ.JJJJJJJJJJJJJJJ.JJJJJJJJJJJJJ..J.JJJ.JJJJJJJJJJ....J.J.JJJJJJJ.J.JJJ.JJJJJJJJJJJJJJJJJJJJJ.J.J.J.JJJ.JJJJJJJJJ....JJJJJJJJJ....JJJJJJJ.JJJJJJJ..JJJ..J.JJJJJJJJJJJJJJJ.JJJJJJJ..JJJ....JJJJJJJJJJJJJJJ.JJJJJJJ..JJJ....JJJJJJJJJJJJJJJ.JJJJJJJJ.JJJ..J.JJJJJJJ.J.JJJ.JJJJJJJJJJJJJ.JJJ.J...JJJ.J.JJJ.JJJJJJJJJJJJJ.JJJ.JJJ.JJJ.J.JJJJJJJJJJJJJJJJJJJJJ.JJJ.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.JJJ.JJJ.J.JJJ.JJJJJJJJJJJJJJJ...JJJJ........J...JJJJ........J...JJJJ........J...JJJJ........J.J.JJJJ........JJJ.JJJ.JJJ.J.JJJ.J.JJJJ........JJJ.JJJ.JJJ.JJJJJ.J.JJJJ........JJJ.JJJ.JJJ.J.JJJ.J.JJJJ........JJJ.JJJ.JJJ.JJJJJ.J.JJJJJ.......JJJ.J.............",
 		4
+	],
+	"sonic": [
+		2, 
+		139, 
+		"..................................................J.J.J.J.J.JJ....J.J.J.J..J........JJJJ..J.JJ.J..................T.T.T.T.T.TT....T...T.T..T........TTT.T.T.TT.T..................J.J.J.J.J.J.J.J.J...J...........J.J.J.J.J.JJ..J.................T.T.T.T.T.T.T.T.T...T...........T.T.T.T.T.TT..T...............J.....J.....J.J.J.JJ....T.TT........J.J.J.J.J.J.J.J...J.........T.....T.....T.T.T.TT....J.JJ....DD.D.............................................................",
+		1
+	],
+	"green": [
+		2, 
+		150, 
+		"................J.....J.....J.....J.....J...J...J.....J.....J...................J.....J.....J...J.....J.....J...J.....J.................................T.T...T.T...T.T...T...........T.T.T...T.T...T.T...T.............T.T...T.T...T.T...T...........T.T.T...T.T...T.T...T.....T.......J.J...J.J...D.J.T.J.T...T.....J.J.J...J.J...D.J.T.J.T...T.......J.J...J.J...D.J.T.J.T...T.....J.J.J...J.J...D.J.T.J.D...D.....J.....J.....J.....J.T.D.T.J.....J.....J.....J.....J.T.D.T.J.....J.....J.....J.....J.T.D.T.J.T.T.T...T.T.T...T.T.T.T.T.T.T.........J.J...J.J...J.J...J...........J.J.J...J.J...J.J...J.............J.J...J.J...J.J...J...........J.J.J...J.J...J.J...J.....J.......T.T...T.T...D.T.J.T.J...J.....T.T.T...T.T...D.T.J.T.J...J.......T.T...T.T...D.T.J.T.J...J.....T.T.T...T.T...D.T.J.T.J.T.D.....T.....T.....T.....T.J.D.J.T.....T.....T.....T.....T.J.D.J.T.....T.....T.....T.....T.J.D.J.T.J.J.J...J.J.J...J.J.J.J.J.J.J................................................................................................................................................................",
+		1
 	]
 };
 var songIdx = 0;
@@ -275,18 +424,38 @@ scene("Game", (arr) => {
     "ui0",
 		"ui1"
 	], "ui0");
-	const player = add([
-    sprite(char + song),
-		layer("JELLYBEAN"),
-		"dances",
-		(song == "faith" ? pos(0, 0) : pos((width() / 2) - 162, height() - 400)),
-		scale(chart[3])
-	])
+	var player;
+	var player2;
+	if (song == "sonic" || song == "green") {
+		player = add([
+	    sprite(char + song + "0"),
+			layer("JELLYBEAN"),
+			"dances",
+			pos(20, 108),
+			scale(chart[3])
+		])
+		player2 = add([
+	    sprite(char + song + "1"),
+			layer("JELLYBEAN"),
+			"dances",
+			pos(224, 20),
+			scale(chart[3])
+		])
+	} else {
+		player = add([
+	    sprite(char + song),
+			layer("JELLYBEAN"),
+			"dances",
+			(song == "faith" ? pos(0, 0) : pos((width() / 2) - 162, height() - 400)),
+			scale(chart[3])
+		])
+	}
 	const bg = add([
 		sprite(song + "BG0"),
 		layer("bg"),
 		scale(chart[3])
 	])
+	if(song == "sonic" || song == "green") bg.play("idle");
 	const fg = add([
 		sprite(song + "FG0"),
 		(song == "faith" ? layer("bg") : layer("fg")),
@@ -342,13 +511,13 @@ scene("Game", (arr) => {
 			every("note", (j) => {
 				j.pos.x = lerp(width(), strumLine, (underlay.time() - j.created) / chart[0]);
 				if(autoplay) {
-					if(j.pos.x <= strumLine) {
+					if(j.pos.x <= strumLine && !j.empty) {
 						play(hitsound);
 					  player.play("talk");
 						destroy(j);
 					}
 				} else {
-					if(j.pos.x <= strumLine - 20) {
+					if(j.pos.x <= strumLine - 20 && !j.empty) {
 						score -= 200;
 						destroy(j);
 						play("explode");
@@ -356,6 +525,12 @@ scene("Game", (arr) => {
 						shake(5);
 						combo = 0;
 						health -= 0.1;
+					}
+				}
+				if(j.pos.x >= strumLine - 20 && j.empty) {
+					if(j.pos.x <= strumLine) {
+						destroy(j); //Destroys note. No score.
+						player2?.play("talk");
 					}
 				}
 			});
@@ -476,36 +651,104 @@ scene("Game", (arr) => {
 						}
 				]);
 				break;
+			case "T":
+				add([
+						rect(0, 50),
+						pos(width(), 20),
+						("note" + prevStep),
+						"note",
+						"empty",
+						{
+							created: underlay.time(),
+							empty: true,
+							type: chart[2][Math.floor(prevStep)]
+						}
+				]);
+				break;
+			case "D":
+				add([
+						rect(10, 50),
+						pos(width(), 20),
+						chart[2][Math.floor(prevStep)] == "F" ? color(168, 56, 50) : color(232, 3, 252),
+						("note" + prevStep),
+						"note",
+						{
+							created: underlay.time(),
+							type: chart[2][Math.floor(prevStep)]
+						}
+				]);
+				add([
+						rect(0, 50),
+						pos(width(), 20),
+						("note" + prevStep),
+						"note",
+						"empty",
+						{
+							created: underlay.time(),
+							empty: true,
+							type: chart[2][Math.floor(prevStep)]
+						}
+				]);
+				break;
 		}
 	}
 	function judgeHitsLol() {
 		var iv = false;
 		every("note", (j) => {
 			if (!iv) {
-				if(j.pos.x >= strumLine - 20) {
-					if(j.pos.x <= strumLine + 22) {
-						iv = true;
-						destroy(j); //Destroys note. No score.
-						noteClick.play("click");
-						combo += 1;
+				if (!j.empty) {
+					var str = "No Rating";
+					var theColor = WHITE;
+					if(j.pos.x >= strumLine - 20) {
+						if(j.pos.x <= strumLine + 22) {
+							iv = true;
+							destroy(j); //Destroys note. No score.
+							noteClick.play("click");
+							combo += 1;
+							str = "MID";
+							theColor = RED;
+						}
+						if(j.pos.x <= strumLine + 12) {
+							play(hitsound); //Plays sound!
+							player.play("talk");
+							score += 20;
+							health += 0.01;
+							str = "Perfect!";
+							theColor = MAGENTA;
+						}
+						if(j.pos.x <= strumLine) {
+							score += 50;
+							health += 0.02;
+							str = "Marvelous!";
+							theColor = YELLOW;
+						}
+						if(j.pos.x <= strumLine - 3) {
+							score += 50;
+							health -= 0.01;
+							str = "Perfect!";
+							theColor = MAGENTA;
+						}
+						if(j.pos.x <= strumLine - 8) {
+							score -= 100;
+							health -= 0.02;
+							str = "Overshot";
+							theColor = CYAN;
+						}
 					}
-					if(j.pos.x <= strumLine + 12) {
-						play(hitsound); //Plays sound!
-						player.play("talk");
-						score += 20;
-						health += 0.01;
-					}
-					if(j.pos.x <= strumLine) {
-						score += 50;
-						health += 0.02;
-					}
-					if(j.pos.x <= strumLine - 3) {
-						score += 50;
-						health -= 0.01;
-					}
-					if(j.pos.x <= strumLine - 8) {
-						score -= 100;
-						health -= 0.02;
+					if (str != "No Rating") {
+						var origpos = strumLine - 16;
+						var ratingtxt = add([
+							text(str, {
+        				size: 30, // 48 pixels tall
+   						}),
+							pos(origpos, 48),
+							color(theColor),
+							origin("right")
+						]);
+						tween(ratingtxt.pos, ["y"], 5, 48, 300, easings.easeOutSine, tweentypes.NORMAL);
+						tween(ratingtxt, ["opacity"], 5, 1, 0, easings.easeOutSine, tweentypes.NORMAL, function() {
+							destroy(ratingtxt);
+						});
 					}
 				}
 			}
@@ -523,7 +766,15 @@ scene("Game", (arr) => {
 scene("Help", () => {
 	var songs = [
 		"tutorial",
-		"faith"
+		"faith",
+		"green",
+		"sonic"
+	];
+	var names = [
+		"Tutorial",
+		"Friendly Faith Plate",
+		"Green Hill Zone",
+		"Emerald Hill Zone"
 	]
 	var chars = {
 		tutorial: [
@@ -535,6 +786,12 @@ scene("Help", () => {
 		],
 		faith: [
 			"FaithPlate"
+		],
+		green: [
+			"SonicAndTails"
+		],
+		sonic: [
+			"SonicAndTails"
 		]
 	}
 	const bg = add([
@@ -586,7 +843,7 @@ scene("Help", () => {
 			origin: "top"
 		});
     drawText({
-  	  text: "SONG ("+ (songIdx + 1) +"/"+ songs.length +"): " + songs[songIdx].toUpperCase(),
+  	  text: "SONG ("+ (songIdx + 1) +"/"+ songs.length +"): " + names[songIdx].toUpperCase(),
     	size: 30,
   	  pos: vec2(width() / 2, 160),
 			origin: "top"
@@ -663,15 +920,15 @@ scene("Help", () => {
 	
 	onKeyPress("left", () => {changeIdx(-1)});
 	onKeyPress("right", () => {changeIdx(1)});
-	onKeyPress("down", () => {changeSongIdx(-1)});
-	onKeyPress("up", () => {changeSongIdx(1)});
+	onKeyPress("down", () => {changeSongIdx(1)});
+	onKeyPress("up", () => {changeSongIdx(-1)});
 	onKeyPress("`", () => {go("Chart", songs[songIdx])});
 	onClick("LeftText", () => {changeIdx(-1)});
 	onClick("RightText", () => {changeIdx(1)});
-	onClick("DownText", () => {changeSongIdx(-1)});
-	onClick("UpText", () => {changeSongIdx(1)});
+	onClick("DownText", () => {changeSongIdx(1)});
+	onClick("UpText", () => {changeSongIdx(-1)});
 	onKeyPress("space", () => {go("Game", [songs[songIdx], chars[songs[songIdx]][idx]]);/*losemus.stop();*/});
-	onClick("TEXT TEXT", () => {go("Game", ["tutorial", chars[songs[songIdx]][idx]]);/*losemus.stop();*/});
+	onClick("TEXT TEXT", () => {go("Game", [songs[songIdx], chars[songs[songIdx]][idx]]);/*losemus.stop();*/});
 });
 
 scene("Title", () => {
@@ -786,9 +1043,9 @@ scene("Chart", (song) => {
 	]);
 	var theP = add([
     pos(width() * 0.6, height() * 0.8),
-    rect(60, 60),
+    rect(60, 30),
     text("P", {
-        size: 48, // 48 pixels tall
+        size: 24, // 48 pixels tall
 				width: 60
     }),
     color(255, 255, 255),
@@ -796,6 +1053,19 @@ scene("Chart", (song) => {
 		origin("center"),
     area(),
 		"theP"
+	]);
+	var theD = add([
+    pos(width() * 0.6, height() * 0.8 + 30),
+    rect(60, 30),
+    text("D", {
+        size: 24, // 48 pixels tall
+				width: 60
+    }),
+    color(255, 255, 255),
+    outline(4, WHITE),
+		origin("center"),
+    area(),
+		"theD"
 	]);
 	var consoleButton = add([
     pos(width() * 0.8, height() * 0.8),
@@ -812,6 +1082,7 @@ scene("Chart", (song) => {
 	onClick("theEmpty", (o) => {tool = "."})
 	onClick("theJ", (o) => {tool = "J"})
 	onClick("theP", (o) => {tool = "P"})
+	onClick("theD", (o) => {tool = "D"})
 	onClick("consoleButton", (o) => {console.log(tempChart.join(""));})
 	onUpdate(() => {
 		curBeat = Math.floor(((music.time() * 1000) / crochet) * 10) / 10;

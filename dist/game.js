@@ -9,19 +9,19 @@
   var rr = Object.getOwnPropertySymbols;
   var Ji = Object.prototype.hasOwnProperty;
   var Qi = Object.prototype.propertyIsEnumerable;
-  var Nt = /* @__PURE__ */ __name((i, t, l) => t in i ? ir(i, t, { enumerable: true, configurable: true, writable: true, value: l }) : i[t] = l, "Nt");
-  var P = /* @__PURE__ */ __name((i, t) => {
+  var Nt = /* @__PURE__ */ __name((i2, t, l) => t in i2 ? ir(i2, t, { enumerable: true, configurable: true, writable: true, value: l }) : i2[t] = l, "Nt");
+  var P = /* @__PURE__ */ __name((i2, t) => {
     for (var l in t || (t = {}))
-      Ji.call(t, l) && Nt(i, l, t[l]);
+      Ji.call(t, l) && Nt(i2, l, t[l]);
     if (rr)
       for (var l of rr(t))
-        Qi.call(t, l) && Nt(i, l, t[l]);
-    return i;
+        Qi.call(t, l) && Nt(i2, l, t[l]);
+    return i2;
   }, "P");
-  var D = /* @__PURE__ */ __name((i, t) => Hi(i, zi(t)), "D");
-  var a = /* @__PURE__ */ __name((i, t) => ir(i, "name", { value: t, configurable: true }), "a");
-  var b = /* @__PURE__ */ __name((i, t, l) => (Nt(i, typeof t != "symbol" ? t + "" : t, l), l), "b");
-  var sr = /* @__PURE__ */ __name((i, t, l) => new Promise((w, U) => {
+  var D = /* @__PURE__ */ __name((i2, t) => Hi(i2, zi(t)), "D");
+  var a = /* @__PURE__ */ __name((i2, t) => ir(i2, "name", { value: t, configurable: true }), "a");
+  var b = /* @__PURE__ */ __name((i2, t, l) => (Nt(i2, typeof t != "symbol" ? t + "" : t, l), l), "b");
+  var sr = /* @__PURE__ */ __name((i2, t, l) => new Promise((w, U) => {
     var p = /* @__PURE__ */ __name((q) => {
       try {
         A(l.next(q));
@@ -35,14 +35,14 @@
         U(V);
       }
     }, "S"), A = /* @__PURE__ */ __name((q) => q.done ? w(q.value) : Promise.resolve(q.value).then(p, S), "A");
-    A((l = l.apply(i, t)).next());
+    A((l = l.apply(i2, t)).next());
   }), "sr");
   var or = (() => {
-    for (var i = new Uint8Array(128), t = 0; t < 64; t++)
-      i[t < 26 ? t + 65 : t < 52 ? t + 71 : t < 62 ? t - 4 : t * 4 - 205] = t;
+    for (var i2 = new Uint8Array(128), t = 0; t < 64; t++)
+      i2[t < 26 ? t + 65 : t < 52 ? t + 71 : t < 62 ? t - 4 : t * 4 - 205] = t;
     return (l) => {
       for (var w = l.length, U = new Uint8Array((w - (l[w - 1] == "=") - (l[w - 2] == "=")) * 3 / 4 | 0), p = 0, S = 0; p < w; ) {
-        var A = i[l.charCodeAt(p++)], q = i[l.charCodeAt(p++)], V = i[l.charCodeAt(p++)], j = i[l.charCodeAt(p++)];
+        var A = i2[l.charCodeAt(p++)], q = i2[l.charCodeAt(p++)], V = i2[l.charCodeAt(p++)], j = i2[l.charCodeAt(p++)];
         U[S++] = A << 2 | q >> 4, U[S++] = q << 4 | V >> 2, U[S++] = V << 6 | j;
       }
       return U;
@@ -64,80 +64,80 @@
     }
   }, "$");
   a($, "IDList");
-  function jt(i, t) {
-    let l = typeof i, w = typeof t;
+  function jt(i2, t) {
+    let l = typeof i2, w = typeof t;
     if (l !== w)
       return false;
     if (l === "object" && w === "object") {
-      let U = Object.keys(i), p = Object.keys(t);
+      let U = Object.keys(i2), p = Object.keys(t);
       if (U.length !== p.length)
         return false;
       for (let S of U) {
-        let A = i[S], q = t[S];
+        let A = i2[S], q = t[S];
         if (!(typeof A == "function" && typeof q == "function") && !jt(A, q))
           return false;
       }
       return true;
     }
-    return i === t;
+    return i2 === t;
   }
   __name(jt, "jt");
   a(jt, "deepEq");
-  function Yt(i, t) {
+  function Yt(i2, t) {
     let l = document.createElement("a");
-    document.body.appendChild(l), l.setAttribute("style", "display: none"), l.href = i, l.download = t, l.click(), document.body.removeChild(l);
+    document.body.appendChild(l), l.setAttribute("style", "display: none"), l.href = i2, l.download = t, l.click(), document.body.removeChild(l);
   }
   __name(Yt, "Yt");
   a(Yt, "downloadURL");
-  function ur(i, t) {
-    let l = URL.createObjectURL(i);
+  function ur(i2, t) {
+    let l = URL.createObjectURL(i2);
     Yt(l, t), URL.revokeObjectURL(l);
   }
   __name(ur, "ur");
   a(ur, "downloadBlob");
-  function cr(i) {
-    return i.match(/^data:\w+\/\w+;base64,.+/);
+  function cr(i2) {
+    return i2.match(/^data:\w+\/\w+;base64,.+/);
   }
   __name(cr, "cr");
   a(cr, "isDataURL");
   var lr = (() => {
-    let i = 0;
-    return () => i++;
+    let i2 = 0;
+    return () => i2++;
   })();
   var ar = /* @__PURE__ */ new Set();
-  function B(i, t) {
-    ar.has(i) || (ar.add(i), console.warn(`${i} is deprecated. Use ${t} instead.`));
+  function B(i2, t) {
+    ar.has(i2) || (ar.add(i2), console.warn(`${i2} is deprecated. Use ${t} instead.`));
   }
   __name(B, "B");
   a(B, "deprecateMsg");
-  var T = a((i, t, l) => (...w) => (B(i, t), l(...w)), "deprecate");
-  function he(i) {
-    return i * Math.PI / 180;
+  var T = a((i2, t, l) => (...w) => (B(i2, t), l(...w)), "deprecate");
+  function he(i2) {
+    return i2 * Math.PI / 180;
   }
   __name(he, "he");
   a(he, "deg2rad");
-  function Xt(i) {
-    return i * 180 / Math.PI;
+  function Xt(i2) {
+    return i2 * 180 / Math.PI;
   }
   __name(Xt, "Xt");
   a(Xt, "rad2deg");
-  function z(i, t, l) {
-    return t > l ? z(i, l, t) : Math.min(Math.max(i, t), l);
+  function z(i2, t, l) {
+    return t > l ? z(i2, l, t) : Math.min(Math.max(i2, t), l);
   }
   __name(z, "z");
   a(z, "clamp");
-  function Ve(i, t, l) {
-    return i + (t - i) * l;
+  function Ve(i2, t, l) {
+    return i2 + (t - i2) * l;
   }
   __name(Ve, "Ve");
   a(Ve, "lerp");
-  function dt(i, t, l, w, U) {
-    return w + (i - t) / (l - t) * (U - w);
+  function dt(i2, t, l, w, U) {
+    return w + (i2 - t) / (l - t) * (U - w);
   }
   __name(dt, "dt");
   a(dt, "map");
-  function dr(i, t, l, w, U) {
-    return z(dt(i, t, l, w, U), w, U);
+  function dr(i2, t, l, w, U) {
+    return z(dt(i2, t, l, w, U), w, U);
   }
   __name(dr, "dr");
   a(dr, "mapc");
@@ -204,14 +204,14 @@
   }, "N");
   var L = N;
   a(L, "Vec2"), b(L, "LEFT", new N(-1, 0)), b(L, "RIGHT", new N(1, 0)), b(L, "UP", new N(0, -1)), b(L, "DOWN", new N(0, 1));
-  function f(...i) {
-    if (i.length === 1) {
-      if (i[0] instanceof L)
-        return f(i[0].x, i[0].y);
-      if (Array.isArray(i[0]) && i[0].length === 2)
-        return f.apply(null, i[0]);
+  function f(...i2) {
+    if (i2.length === 1) {
+      if (i2[0] instanceof L)
+        return f(i2[0].x, i2[0].y);
+      if (Array.isArray(i2[0]) && i2[0].length === 2)
+        return f.apply(null, i2[0]);
     }
-    return new L(...i);
+    return new L(...i2);
   }
   __name(f, "f");
   a(f, "vec2");
@@ -227,7 +227,7 @@
     }
   }, "Fe");
   a(Fe, "Vec3");
-  var de = a((i, t, l) => new Fe(i, t, l), "vec3");
+  var de = a((i2, t, l) => new Fe(i2, t, l), "vec3");
   var ue = /* @__PURE__ */ __name(class {
     constructor(t, l, w) {
       b(this, "r", 255);
@@ -271,20 +271,20 @@
   }, "ue");
   var v = ue;
   a(v, "Color"), b(v, "RED", E(255, 0, 0)), b(v, "GREEN", E(0, 255, 0)), b(v, "BLUE", E(0, 0, 255)), b(v, "YELLOW", E(255, 255, 0)), b(v, "MAGENTA", E(255, 0, 255)), b(v, "CYAN", E(0, 255, 255)), b(v, "WHITE", E(255, 255, 255)), b(v, "BLACK", E(0, 0, 0));
-  function E(...i) {
-    if (i.length === 0)
+  function E(...i2) {
+    if (i2.length === 0)
       return new v(255, 255, 255);
-    if (i.length === 1) {
-      if (i[0] instanceof v)
-        return i[0].clone();
-      if (Array.isArray(i[0]) && i[0].length === 3)
-        return v.fromArray(i[0]);
+    if (i2.length === 1) {
+      if (i2[0] instanceof v)
+        return i2[0].clone();
+      if (Array.isArray(i2[0]) && i2[0].length === 3)
+        return v.fromArray(i2[0]);
     }
-    return new v(...i);
+    return new v(...i2);
   }
   __name(E, "E");
   a(E, "rgb");
-  var fr = a((i, t, l) => v.fromHSL(i, t, l), "hsl2rgb");
+  var fr = a((i2, t, l) => v.fromHSL(i2, t, l), "hsl2rgb");
   var k = /* @__PURE__ */ __name(class {
     constructor(t, l, w, U) {
       b(this, "x", 0);
@@ -307,8 +307,8 @@
     }
   }, "k");
   a(k, "Quad");
-  function pr(i, t, l, w) {
-    return new k(i, t, l, w);
+  function pr(i2, t, l, w) {
+    return new k(i2, t, l, w);
   }
   __name(pr, "pr");
   a(pr, "quad");
@@ -381,8 +381,8 @@
     }
   }, "R");
   a(R, "Mat4");
-  function Kt(i, t, l, w = Math.sin) {
-    return i + (w(l) + 1) / 2 * (t - i);
+  function Kt(i2, t, l, w = Math.sin) {
+    return i2 + (w(l) + 1) / 2 * (t - i2);
   }
   __name(Kt, "Kt");
   a(Kt, "wave");
@@ -416,124 +416,124 @@
   }, "be");
   a(be, "RNG");
   var $t = new be(Date.now());
-  function mr(i) {
-    return B("rng()", "new RNG()"), new be(i);
+  function mr(i2) {
+    return B("rng()", "new RNG()"), new be(i2);
   }
   __name(mr, "mr");
   a(mr, "rng");
-  function wr(i) {
-    return i != null && ($t.seed = i), $t.seed;
+  function wr(i2) {
+    return i2 != null && ($t.seed = i2), $t.seed;
   }
   __name(wr, "wr");
   a(wr, "randSeed");
-  function Ge(...i) {
-    return $t.gen(...i);
+  function Ge(...i2) {
+    return $t.gen(...i2);
   }
   __name(Ge, "Ge");
   a(Ge, "rand");
-  function Ht(...i) {
-    return Math.floor(Ge(...i));
+  function Ht(...i2) {
+    return Math.floor(Ge(...i2));
   }
   __name(Ht, "Ht");
   a(Ht, "randi");
-  function gr(i) {
-    return Ge() <= i;
+  function gr(i2) {
+    return Ge() <= i2;
   }
   __name(gr, "gr");
   a(gr, "chance");
-  function Ur(i) {
-    return i[Ht(i.length)];
+  function Ur(i2) {
+    return i2[Ht(i2.length)];
   }
   __name(Ur, "Ur");
   a(Ur, "choose");
-  function yr(i, t) {
-    return i.p2.x >= t.p1.x && i.p1.x <= t.p2.x && i.p2.y >= t.p1.y && i.p1.y <= t.p2.y;
+  function yr(i2, t) {
+    return i2.p2.x >= t.p1.x && i2.p1.x <= t.p2.x && i2.p2.y >= t.p1.y && i2.p1.y <= t.p2.y;
   }
   __name(yr, "yr");
   a(yr, "testRectRect2");
-  function zt(i, t) {
-    return i.p2.x > t.p1.x && i.p1.x < t.p2.x && i.p2.y > t.p1.y && i.p1.y < t.p2.y;
+  function zt(i2, t) {
+    return i2.p2.x > t.p1.x && i2.p1.x < t.p2.x && i2.p2.y > t.p1.y && i2.p1.y < t.p2.y;
   }
   __name(zt, "zt");
   a(zt, "testRectRect");
-  function Jt(i, t) {
-    if (i.p1.x === i.p2.x && i.p1.y === i.p2.y || t.p1.x === t.p2.x && t.p1.y === t.p2.y)
+  function Jt(i2, t) {
+    if (i2.p1.x === i2.p2.x && i2.p1.y === i2.p2.y || t.p1.x === t.p2.x && t.p1.y === t.p2.y)
       return null;
-    let l = (t.p2.y - t.p1.y) * (i.p2.x - i.p1.x) - (t.p2.x - t.p1.x) * (i.p2.y - i.p1.y);
+    let l = (t.p2.y - t.p1.y) * (i2.p2.x - i2.p1.x) - (t.p2.x - t.p1.x) * (i2.p2.y - i2.p1.y);
     if (l === 0)
       return null;
-    let w = ((t.p2.x - t.p1.x) * (i.p1.y - t.p1.y) - (t.p2.y - t.p1.y) * (i.p1.x - t.p1.x)) / l, U = ((i.p2.x - i.p1.x) * (i.p1.y - t.p1.y) - (i.p2.y - i.p1.y) * (i.p1.x - t.p1.x)) / l;
+    let w = ((t.p2.x - t.p1.x) * (i2.p1.y - t.p1.y) - (t.p2.y - t.p1.y) * (i2.p1.x - t.p1.x)) / l, U = ((i2.p2.x - i2.p1.x) * (i2.p1.y - t.p1.y) - (i2.p2.y - i2.p1.y) * (i2.p1.x - t.p1.x)) / l;
     return w < 0 || w > 1 || U < 0 || U > 1 ? null : w;
   }
   __name(Jt, "Jt");
   a(Jt, "testLineLineT");
-  function ce(i, t) {
-    let l = Jt(i, t);
-    return l ? f(i.p1.x + l * (i.p2.x - i.p1.x), i.p1.y + l * (i.p2.y - i.p1.y)) : null;
+  function ce(i2, t) {
+    let l = Jt(i2, t);
+    return l ? f(i2.p1.x + l * (i2.p2.x - i2.p1.x), i2.p1.y + l * (i2.p2.y - i2.p1.y)) : null;
   }
   __name(ce, "ce");
   a(ce, "testLineLine");
-  function ft(i, t) {
-    return ae(i, t.p1) || ae(i, t.p2) ? true : !!ce(t, new le(i.p1, f(i.p2.x, i.p1.y))) || !!ce(t, new le(f(i.p2.x, i.p1.y), i.p2)) || !!ce(t, new le(i.p2, f(i.p1.x, i.p2.y))) || !!ce(t, new le(f(i.p1.x, i.p2.y), i.p1));
+  function ft(i2, t) {
+    return ae(i2, t.p1) || ae(i2, t.p2) ? true : !!ce(t, new le(i2.p1, f(i2.p2.x, i2.p1.y))) || !!ce(t, new le(f(i2.p2.x, i2.p1.y), i2.p2)) || !!ce(t, new le(i2.p2, f(i2.p1.x, i2.p2.y))) || !!ce(t, new le(f(i2.p1.x, i2.p2.y), i2.p1));
   }
   __name(ft, "ft");
   a(ft, "testRectLine");
-  function ae(i, t) {
-    return t.x > i.p1.x && t.x < i.p2.x && t.y > i.p1.y && t.y < i.p2.y;
+  function ae(i2, t) {
+    return t.x > i2.p1.x && t.x < i2.p2.x && t.y > i2.p1.y && t.y < i2.p2.y;
   }
   __name(ae, "ae");
   a(ae, "testRectPoint");
-  function br(i, t) {
-    let l = Math.max(i.p1.x, Math.min(t.center.x, i.p2.x)), w = Math.max(i.p1.y, Math.min(t.center.y, i.p2.y));
+  function br(i2, t) {
+    let l = Math.max(i2.p1.x, Math.min(t.center.x, i2.p2.x)), w = Math.max(i2.p1.y, Math.min(t.center.y, i2.p2.y));
     return f(l, w).dist(t.center) <= t.radius;
   }
   __name(br, "br");
   a(br, "testRectCircle");
-  function pt(i, t) {
-    return wt(t, [i.p1, f(i.p2.x, i.p1.y), i.p2, f(i.p1.x, i.p2.y)]);
+  function pt(i2, t) {
+    return wt(t, [i2.p1, f(i2.p2.x, i2.p1.y), i2.p2, f(i2.p1.x, i2.p2.y)]);
   }
   __name(pt, "pt");
   a(pt, "testRectPolygon");
-  function xr(i, t) {
+  function xr(i2, t) {
     return false;
   }
   __name(xr, "xr");
   a(xr, "testLinePoint");
-  function vr(i, t) {
+  function vr(i2, t) {
     return false;
   }
   __name(vr, "vr");
   a(vr, "testLineCircle");
-  function _e(i, t) {
-    if (xe(t, i.p1) || xe(t, i.p2))
+  function _e(i2, t) {
+    if (xe(t, i2.p1) || xe(t, i2.p2))
       return true;
     for (let l = 0; l < t.length; l++) {
       let w = t[l], U = t[(l + 1) % t.length];
-      if (ce(i, { p1: w, p2: U }))
+      if (ce(i2, { p1: w, p2: U }))
         return true;
     }
     return false;
   }
   __name(_e, "_e");
   a(_e, "testLinePolygon");
-  function mt(i, t) {
-    return i.center.dist(t) < i.radius;
+  function mt(i2, t) {
+    return i2.center.dist(t) < i2.radius;
   }
   __name(mt, "mt");
   a(mt, "testCirclePoint");
-  function Qt(i, t) {
-    return i.center.dist(t.center) < i.radius + t.radius;
+  function Qt(i2, t) {
+    return i2.center.dist(t.center) < i2.radius + t.radius;
   }
   __name(Qt, "Qt");
   a(Qt, "testCircleCircle");
-  function Er(i, t) {
+  function Er(i2, t) {
     return false;
   }
   __name(Er, "Er");
   a(Er, "testCirclePolygon");
-  function wt(i, t) {
-    for (let l = 0; l < i.length; l++) {
-      let w = { p1: i[l], p2: i[(l + 1) % i.length] };
+  function wt(i2, t) {
+    for (let l = 0; l < i2.length; l++) {
+      let w = { p1: i2[l], p2: i2[(l + 1) % i2.length] };
       if (_e(w, t))
         return true;
     }
@@ -541,123 +541,123 @@
   }
   __name(wt, "wt");
   a(wt, "testPolygonPolygon");
-  function xe(i, t) {
+  function xe(i2, t) {
     let l = false;
-    for (let w = 0, U = i.length - 1; w < i.length; U = w++)
-      i[w].y > t.y != i[U].y > t.y && t.x < (i[U].x - i[w].x) * (t.y - i[w].y) / (i[U].y - i[w].y) + i[w].x && (l = !l);
+    for (let w = 0, U = i2.length - 1; w < i2.length; U = w++)
+      i2[w].y > t.y != i2[U].y > t.y && t.x < (i2[U].x - i2[w].x) * (t.y - i2[w].y) / (i2[U].y - i2[w].y) + i2[w].x && (l = !l);
     return l;
   }
   __name(xe, "xe");
   a(xe, "testPolygonPoint");
-  function ts(i, t) {
-    return i.eq(t);
+  function ts(i2, t) {
+    return i2.eq(t);
   }
   __name(ts, "ts");
   a(ts, "testPointPoint");
-  function gt(i, t) {
-    switch (i.shape) {
+  function gt(i2, t) {
+    switch (i2.shape) {
       case "rect":
-        return zt(t, i);
+        return zt(t, i2);
       case "line":
-        return ft(t, i);
+        return ft(t, i2);
       case "circle":
-        return br(t, i);
+        return br(t, i2);
       case "polygon":
-        return pt(t, i.pts);
+        return pt(t, i2.pts);
       case "point":
-        return ae(t, i.pt);
+        return ae(t, i2.pt);
     }
-    throw new Error(`Unknown area shape: ${i.shape}`);
+    throw new Error(`Unknown area shape: ${i2.shape}`);
   }
   __name(gt, "gt");
   a(gt, "testAreaRect");
-  function Zt(i, t) {
-    switch (i.shape) {
+  function Zt(i2, t) {
+    switch (i2.shape) {
       case "rect":
-        return ft(i, t);
+        return ft(i2, t);
       case "line":
-        return Boolean(ce(i, t));
+        return Boolean(ce(i2, t));
       case "circle":
-        return vr(t, i);
+        return vr(t, i2);
       case "polygon":
-        return _e(t, i.pts);
+        return _e(t, i2.pts);
       case "point":
-        return xr(t, i.pt);
+        return xr(t, i2.pt);
     }
-    throw new Error(`Unknown area shape: ${i.shape}`);
+    throw new Error(`Unknown area shape: ${i2.shape}`);
   }
   __name(Zt, "Zt");
   a(Zt, "testAreaLine");
-  function en(i, t) {
-    switch (i.shape) {
+  function en(i2, t) {
+    switch (i2.shape) {
       case "rect":
-        return br(i, t);
+        return br(i2, t);
       case "line":
-        return vr(i, t);
+        return vr(i2, t);
       case "circle":
-        return Qt(i, t);
+        return Qt(i2, t);
       case "polygon":
-        return Er(t, i.pts);
+        return Er(t, i2.pts);
       case "point":
-        return mt(t, i.pt);
+        return mt(t, i2.pt);
     }
-    throw new Error(`Unknown area shape: ${i.shape}`);
+    throw new Error(`Unknown area shape: ${i2.shape}`);
   }
   __name(en, "en");
   a(en, "testAreaCircle");
-  function tn(i, t) {
-    switch (i.shape) {
+  function tn(i2, t) {
+    switch (i2.shape) {
       case "rect":
-        return pt(i, t);
+        return pt(i2, t);
       case "line":
-        return _e(i, t);
+        return _e(i2, t);
       case "circle":
-        return Er(i, t);
+        return Er(i2, t);
       case "polygon":
-        return wt(t, i.pts);
+        return wt(t, i2.pts);
       case "point":
-        return xe(t, i.pt);
+        return xe(t, i2.pt);
     }
-    throw new Error(`Unknown area shape: ${i.shape}`);
+    throw new Error(`Unknown area shape: ${i2.shape}`);
   }
   __name(tn, "tn");
   a(tn, "testAreaPolygon");
-  function Ut(i, t) {
-    switch (i.shape) {
+  function Ut(i2, t) {
+    switch (i2.shape) {
       case "rect":
-        return ae(i, t);
+        return ae(i2, t);
       case "line":
-        return xr(i, t);
+        return xr(i2, t);
       case "circle":
-        return mt(i, t);
+        return mt(i2, t);
       case "polygon":
-        return xe(i.pts, t);
+        return xe(i2.pts, t);
       case "point":
-        return ts(i.pt, t);
+        return ts(i2.pt, t);
     }
-    throw new Error(`Unknown area shape: ${i.shape}`);
+    throw new Error(`Unknown area shape: ${i2.shape}`);
   }
   __name(Ut, "Ut");
   a(Ut, "testAreaPoint");
-  function nn(i, t) {
+  function nn(i2, t) {
     switch (t.shape) {
       case "rect":
-        return gt(i, t);
+        return gt(i2, t);
       case "line":
-        return Zt(i, t);
+        return Zt(i2, t);
       case "circle":
-        return en(i, t);
+        return en(i2, t);
       case "polygon":
-        return tn(i, t.pts);
+        return tn(i2, t.pts);
       case "point":
-        return Ut(i, t.pt);
+        return Ut(i2, t.pt);
     }
     throw new Error(`Unknown area shape: ${t.shape}`);
   }
   __name(nn, "nn");
   a(nn, "testAreaArea");
-  function yt(i, t) {
-    return { p1: f(i.p1.x - t.p2.x, i.p1.y - t.p2.y), p2: f(i.p2.x - t.p1.x, i.p2.y - t.p1.y) };
+  function yt(i2, t) {
+    return { p1: f(i2.p1.x - t.p2.x, i2.p1.y - t.p2.y), p2: f(i2.p2.x - t.p1.x, i2.p2.y - t.p1.y) };
   }
   __name(yt, "yt");
   a(yt, "minkDiff");
@@ -795,13 +795,13 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
 `;
   var ys = /* @__PURE__ */ new Set(["id", "require"]);
   var bs = /* @__PURE__ */ new Set(["add", "load", "update", "draw", "destroy", "inspect"]);
-  function kr(i) {
-    return i === "pressed" || i === "rpressed" ? "down" : i === "released" ? "up" : i;
+  function kr(i2) {
+    return i2 === "pressed" || i2 === "rpressed" ? "down" : i2 === "released" ? "up" : i2;
   }
   __name(kr, "kr");
   a(kr, "processButtonState");
-  function xs(i) {
-    i.requestFullscreen ? i.requestFullscreen() : i.webkitRequestFullscreen && i.webkitRequestFullscreen();
+  function xs(i2) {
+    i2.requestFullscreen ? i2.requestFullscreen() : i2.webkitRequestFullscreen && i2.webkitRequestFullscreen();
   }
   __name(xs, "xs");
   a(xs, "enterFullscreen");
@@ -815,8 +815,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }
   __name(Es, "Es");
   a(Es, "getFullscreenElement");
-  function Ye(i) {
-    switch (i) {
+  function Ye(i2) {
+    switch (i2) {
       case "topleft":
         return f(-1, -1);
       case "top":
@@ -836,7 +836,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       case "botright":
         return f(1, 1);
       default:
-        return i;
+        return i2;
     }
   }
   __name(Ye, "Ye");
@@ -846,26 +846,26 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }
   __name(Gr, "Gr");
   a(Gr, "createEmptyAudioBuffer");
-  var no = a((i = {}) => {
+  var no = a((i2 = {}) => {
     let t = (() => {
       var s, o, d;
-      let e = (s = i.root) != null ? s : document.body;
+      let e = (s = i2.root) != null ? s : document.body;
       e === document.body && (document.body.style.width = "100%", document.body.style.height = "100%", document.body.style.margin = "0px", document.documentElement.style.width = "100%", document.documentElement.style.height = "100%");
-      let n = (o = i.canvas) != null ? o : (() => {
-        let h = document.createElement("canvas");
-        return e.appendChild(h), h;
-      })(), r = (d = i.scale) != null ? d : 1;
-      i.width && i.height && !i.stretch && !i.letterbox ? (n.width = i.width * r, n.height = i.height * r) : (n.width = n.parentElement.offsetWidth, n.height = n.parentElement.offsetHeight);
+      let n = (o = i2.canvas) != null ? o : (() => {
+        let h2 = document.createElement("canvas");
+        return e.appendChild(h2), h2;
+      })(), r = (d = i2.scale) != null ? d : 1;
+      i2.width && i2.height && !i2.stretch && !i2.letterbox ? (n.width = i2.width * r, n.height = i2.height * r) : (n.width = n.parentElement.offsetWidth, n.height = n.parentElement.offsetHeight);
       let u = ["outline: none", "cursor: default"];
-      i.crisp && (u.push("image-rendering: pixelated"), u.push("image-rendering: crisp-edges")), n.style = u.join(";"), n.setAttribute("tabindex", "0");
+      i2.crisp && (u.push("image-rendering: pixelated"), u.push("image-rendering: crisp-edges")), n.style = u.join(";"), n.setAttribute("tabindex", "0");
       let c = n.getContext("webgl", { antialias: true, depth: true, stencil: true, alpha: true, preserveDrawingBuffer: true });
       return { canvas: n, scale: r, gl: c, keyStates: {}, mouseStates: {}, charInputted: [], isMouseMoved: false, isKeyPressed: false, isKeyPressedRepeat: false, isKeyReleased: false, mousePos: f(0, 0), mouseDeltaPos: f(0, 0), time: 0, realTime: 0, skipTime: false, dt: 0, numFrames: 0, isTouch: "ontouchstart" in window || navigator.maxTouchPoints > 0, loopID: null, stopped: false, paused: false, fpsCounter: new Be(), loaded: false };
     })(), l = (() => {
       var d;
-      let e = t.gl, n = cn(sn, on), r = Ke(new ImageData(new Uint8ClampedArray([255, 255, 255, 255]), 1, 1)), u = (d = i.background) != null ? d : E(0, 0, 0);
-      if (i.background) {
-        let h = v.fromArray(i.background);
-        e.clearColor(h.r / 255, h.g / 255, h.b / 255, 1);
+      let e = t.gl, n = cn(sn, on), r = Ke(new ImageData(new Uint8ClampedArray([255, 255, 255, 255]), 1, 1)), u = (d = i2.background) != null ? d : E(0, 0, 0);
+      if (i2.background) {
+        let h2 = v.fromArray(i2.background);
+        e.clearColor(h2.r / 255, h2.g / 255, h2.b / 255, 1);
       }
       e.enable(e.BLEND), e.enable(e.SCISSOR_TEST), e.blendFuncSeparate(e.SRC_ALPHA, e.ONE_MINUS_SRC_ALPHA, e.ONE, e.ONE_MINUS_SRC_ALPHA);
       let c = e.createBuffer();
@@ -873,7 +873,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       let s = e.createBuffer();
       e.bindBuffer(e.ELEMENT_ARRAY_BUFFER, s), e.bufferData(e.ELEMENT_ARRAY_BUFFER, bt * 2, e.DYNAMIC_DRAW), e.bindBuffer(e.ELEMENT_ARRAY_BUFFER, null);
       let o = Ke(new ImageData(new Uint8ClampedArray([128, 128, 128, 255, 190, 190, 190, 255, 190, 190, 190, 255, 128, 128, 128, 255]), 2, 2), { wrap: "repeat", filter: "nearest" });
-      return { drawCalls: 0, lastDrawCalls: 0, defShader: n, curShader: n, defTex: r, curTex: r, curUniform: {}, vbuf: c, ibuf: s, vqueue: [], iqueue: [], transform: new R(), transformStack: [], bgTex: o, width: i.width, height: i.height, viewport: { x: 0, y: 0, width: e.drawingBufferWidth, height: e.drawingBufferHeight } };
+      return { drawCalls: 0, lastDrawCalls: 0, defShader: n, curShader: n, defTex: r, curTex: r, curUniform: {}, vbuf: c, ibuf: s, vqueue: [], iqueue: [], transform: new R(), transformStack: [], bgTex: o, width: i2.width, height: i2.height, viewport: { x: 0, y: 0, width: e.drawingBufferWidth, height: e.drawingBufferHeight } };
     })();
     Un();
     let w = (() => {
@@ -963,10 +963,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     __name(vt, "vt");
     a(vt, "getShader");
     function ve(e = 1, n = 1, r = 0, u = 0, c = 1, s = 1) {
-      let o = [], d = c / e, h = s / n;
+      let o = [], d = c / e, h2 = s / n;
       for (let m = 0; m < n; m++)
         for (let g = 0; g < e; g++)
-          o.push(new k(r + g * d, u + m * h, d, h));
+          o.push(new k(r + g * d, u + m * h2, d, h2));
       return o;
     }
     __name(ve, "ve");
@@ -975,8 +975,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       return S(typeof n == "string" ? V(n).then((r) => r.json()).then((r) => Ee(e, r)) : J(null, e).then((r) => {
         let u = {}, c = r.tex.width, s = r.tex.height;
         for (let o in n) {
-          let d = n[o], h = { tex: r.tex, frames: ve(d.sliceX, d.sliceY, d.x / c, d.y / s, d.width / c, d.height / s), anims: d.anims };
-          U.sprites[o] = h, u[o] = h;
+          let d = n[o], h2 = { tex: r.tex, frames: ve(d.sliceX, d.sliceY, d.x / c, d.y / s, d.width / c, d.height / s), anims: d.anims };
+          U.sprites[o] = h2, u[o] = h2;
         }
         return u;
       }));
@@ -1004,8 +1004,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           let s = yield Promise.all(c.frames.map(j)), o = document.createElement("canvas");
           o.width = c.width, o.height = c.height * c.frames.length;
           let d = o.getContext("2d");
-          return s.forEach((h, m) => {
-            d.drawImage(h, 0, m * c.height);
+          return s.forEach((h2, m) => {
+            d.drawImage(h2, 0, m * c.height);
           }), J(e, o, { sliceY: c.frames.length, anims: c.anims });
         })).then(r).catch(u);
       }));
@@ -1017,9 +1017,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         J(e, n).then((s) => {
           V(r).then((o) => o.json()).then((o) => {
             let d = o.meta.size;
-            s.frames = o.frames.map((h) => new k(h.frame.x / d.w, h.frame.y / d.h, h.frame.w / d.w, h.frame.h / d.h));
-            for (let h of o.meta.frameTags)
-              h.from === h.to ? s.anims[h.name] = h.from : s.anims[h.name] = { from: h.from, to: h.to, speed: 10, loop: true };
+            s.frames = o.frames.map((h2) => new k(h2.frame.x / d.w, h2.frame.y / d.h, h2.frame.w / d.w, h2.frame.h / d.h));
+            for (let h2 of o.meta.frameTags)
+              h2.from === h2.to ? s.anims[h2.name] = h2.from : s.anims[h2.name] = { from: h2.from, to: h2.to, speed: 10, loop: true };
             u(s);
           }).catch(c);
         }).catch(c);
@@ -1029,26 +1029,26 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     a(Et, "loadAseprite");
     function Se(e, n, r, u = false) {
       function c(s, o, d) {
-        let h = cn(o, d);
-        return s && (U.shaders[s] = h), h;
+        let h2 = cn(o, d);
+        return s && (U.shaders[s] = h2), h2;
       }
       __name(c, "c");
       return a(c, "loadRawShader"), S(new Promise((s, o) => {
         if (!n && !r)
           return o("no shader");
-        function d(h) {
-          return h ? V(h).then((m) => m.text()).catch(o) : new Promise((m) => m(null));
+        function d(h2) {
+          return h2 ? V(h2).then((m) => m.text()).catch(o) : new Promise((m) => m(null));
         }
         __name(d, "d");
         if (a(d, "resolveUrl"), u)
-          Promise.all([d(n), d(r)]).then(([h, m]) => {
-            s(c(e, h, m));
+          Promise.all([d(n), d(r)]).then(([h2, m]) => {
+            s(c(e, h2, m));
           }).catch(o);
         else
           try {
             s(c(e, n, r));
-          } catch (h) {
-            o(h);
+          } catch (h2) {
+            o(h2);
           }
       }));
     }
@@ -1095,7 +1095,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       c.connect(s), s.connect(w.masterNode);
       let o = (g = n.seek) != null ? g : 0;
       c.start(0, o);
-      let d = r.currentTime - o, h = null, m = { stop() {
+      let d = r.currentTime - o, h2 = null, m = { stop() {
         u || (this.pause(), d = r.currentTime);
       }, play(y) {
         if (!u)
@@ -1103,9 +1103,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         let x = c;
         c = r.createBufferSource(), c.buffer = x.buffer, c.loop = x.loop, c.playbackRate.value = x.playbackRate.value, c.detune && (c.detune.value = x.detune.value), c.connect(s);
         let W = y != null ? y : this.time();
-        c.start(0, W), d = r.currentTime - W, u = false, h = null;
+        c.start(0, W), d = r.currentTime - W, u = false, h2 = null;
       }, pause() {
-        u || (c.stop(), u = true, h = r.currentTime);
+        u || (c.stop(), u = true, h2 = r.currentTime);
       }, isPaused() {
         return u;
       }, paused() {
@@ -1127,7 +1127,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, duration() {
         return e.buf.duration;
       }, time() {
-        return u ? h - d : r.currentTime - d;
+        return u ? h2 - d : r.currentTime - d;
       } };
       return m.speed(n.speed), m.detune(n.detune), m.volume(n.volume), m;
     }
@@ -1143,7 +1143,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       r.bindTexture(r.TEXTURE_2D, u), r.texImage2D(r.TEXTURE_2D, 0, r.RGBA, r.RGBA, r.UNSIGNED_BYTE, e);
       let c = (() => {
         var o;
-        switch ((o = n.filter) != null ? o : i.texFilter) {
+        switch ((o = n.filter) != null ? o : i2.texFilter) {
           case "linear":
             return r.LINEAR;
           case "nearest":
@@ -1175,18 +1175,18 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         throw new Error(u);
       if (u = r.getShaderInfoLog(d))
         throw new Error(u);
-      let h = r.createProgram();
-      if (r.attachShader(h, o), r.attachShader(h, d), r.bindAttribLocation(h, 0, "a_pos"), r.bindAttribLocation(h, 1, "a_uv"), r.bindAttribLocation(h, 2, "a_color"), r.linkProgram(h), (u = r.getProgramInfoLog(h)) && u !== `
+      let h2 = r.createProgram();
+      if (r.attachShader(h2, o), r.attachShader(h2, d), r.bindAttribLocation(h2, 0, "a_pos"), r.bindAttribLocation(h2, 1, "a_uv"), r.bindAttribLocation(h2, 2, "a_color"), r.linkProgram(h2), (u = r.getProgramInfoLog(h2)) && u !== `
 `)
         throw new Error(u);
       return { bind() {
-        r.useProgram(h);
+        r.useProgram(h2);
       }, unbind() {
         r.useProgram(null);
       }, send(m) {
         this.bind();
         for (let g in m) {
-          let y = m[g], x = r.getUniformLocation(h, g);
+          let y = m[g], x = r.getUniformLocation(h2, g);
           typeof y == "number" ? r.uniform1f(x, y) : y instanceof R ? r.uniformMatrix4fv(x, false, new Float32Array(y.m)) : y instanceof v ? r.uniform4f(x, y.r, y.g, y.b, y.a) : y instanceof Fe ? r.uniform3f(x, y.x, y.y, y.z) : y instanceof L && r.uniform2f(x, y.x, y.y);
         }
         this.unbind();
@@ -1195,18 +1195,18 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     __name(cn, "cn");
     a(cn, "makeShader");
     function Nr(e, n, r, u) {
-      let c = e.width / n, s = e.height / r, o = 1 / c, d = 1 / s, h = {}, m = u.split("").entries();
+      let c = e.width / n, s = e.height / r, o = 1 / c, d = 1 / s, h2 = {}, m = u.split("").entries();
       for (let [g, y] of m)
-        h[y] = f(g % c * o, Math.floor(g / c) * d);
-      return { tex: e, map: h, qw: o, qh: d };
+        h2[y] = f(g % c * o, Math.floor(g / c) * d);
+      return { tex: e, map: h2, qw: o, qh: d };
     }
     __name(Nr, "Nr");
     a(Nr, "makeFont");
     function Tt(e, n, r, u = l.defTex, c = l.defShader, s = {}) {
       u = u != null ? u : l.defTex, c = c != null ? c : l.defShader, (u !== l.curTex || c !== l.curShader || !jt(l.curUniform, s) || l.vqueue.length + e.length * je > bt || l.iqueue.length + n.length > bt) && ln();
       for (let o of e) {
-        let d = r ? l.transform : p.cam.transform.mult(l.transform), h = jr(d.multVec2(o.pos.xy()));
-        l.vqueue.push(h.x, h.y, o.pos.z, o.uv.x, o.uv.y, o.color.r / 255, o.color.g / 255, o.color.b / 255, o.opacity);
+        let d = r ? l.transform : p.cam.transform.mult(l.transform), h2 = jr(d.multVec2(o.pos.xy()));
+        l.vqueue.push(h2.x, h2.y, o.pos.z, o.uv.x, o.uv.y, o.color.r / 255, o.color.g / 255, o.color.b / 255, o.opacity);
       }
       for (let o of n)
         l.iqueue.push(o + l.vqueue.length / je - e.length);
@@ -1223,7 +1223,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     __name(ln, "ln");
     a(ln, "flush");
     function He() {
-      t.gl.clear(t.gl.COLOR_BUFFER_BIT), i.background || pe({ width: F(), height: G(), quad: new k(0, 0, F() * t.scale / Fr, G() * t.scale / Fr), tex: l.bgTex, fixed: true }), l.drawCalls = 0, l.transformStack = [], l.transform = new R();
+      t.gl.clear(t.gl.COLOR_BUFFER_BIT), i2.background || pe({ width: F(), height: G(), quad: new k(0, 0, F() * t.scale / Fr, G() * t.scale / Fr), tex: l.bgTex, fixed: true }), l.drawCalls = 0, l.transformStack = [], l.transform = new R();
     }
     __name(He, "He");
     a(He, "frameStart");
@@ -1294,12 +1294,12 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     __name(ie, "ie");
     a(ie, "popTransform");
     function pe(e) {
-      var h;
+      var h2;
       if (e.width === void 0 || e.height === void 0)
         throw new Error('drawUVQuad() requires property "width" and "height".');
       if (e.width <= 0 || e.height <= 0)
         return;
-      let n = e.width, r = e.height, c = Ye(e.origin || Ne).scale(f(n, r).scale(-0.5)), s = e.quad || new k(0, 0, 1, 1), o = e.color || E(255, 255, 255), d = (h = e.opacity) != null ? h : 1;
+      let n = e.width, r = e.height, c = Ye(e.origin || Ne).scale(f(n, r).scale(-0.5)), s = e.quad || new k(0, 0, 1, 1), o = e.color || E(255, 255, 255), d = (h2 = e.opacity) != null ? h2 : 1;
       re(), I(e.pos), Je(e.angle), ne(e.scale), I(c), Tt([{ pos: de(-n / 2, r / 2, 0), uv: f(e.flipX ? s.x + s.w : s.x, e.flipY ? s.y : s.y + s.h), color: o, opacity: d }, { pos: de(-n / 2, -r / 2, 0), uv: f(e.flipX ? s.x + s.w : s.x, e.flipY ? s.y + s.h : s.y), color: o, opacity: d }, { pos: de(n / 2, -r / 2, 0), uv: f(e.flipX ? s.x : s.x + s.w, e.flipY ? s.y + s.h : s.y), color: o, opacity: d }, { pos: de(n / 2, r / 2, 0), uv: f(e.flipX ? s.x : s.x + s.w, e.flipY ? s.y : s.y + s.h), color: o, opacity: d }], [0, 1, 3, 1, 2, 3], e.fixed, e.tex, e.shader, e.uniform), ie();
     }
     __name(pe, "pe");
@@ -1340,10 +1340,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     a(hn, "drawSprite");
     function Re(e, n, r, u, c, s = 1) {
       u = he(u % 360), c = he(c % 360), c <= u && (c += Math.PI * 2);
-      let o = Math.ceil(Math.max(Math.sqrt(n + r) * 3 * (s || 1), 16)), d = (c - u) / o, h = [];
+      let o = Math.ceil(Math.max(Math.sqrt(n + r) * 3 * (s || 1), 16)), d = (c - u) / o, h2 = [];
       for (let m = u; m < c; m += d)
-        h.push(e.add(n * Math.cos(m), r * Math.sin(m)));
-      return h.push(e.add(n * Math.cos(c), r * Math.sin(c))), h;
+        h2.push(e.add(n * Math.cos(m), r * Math.sin(m)));
+      return h2.push(e.add(n * Math.cos(c), r * Math.sin(c))), h2;
     }
     __name(Re, "Re");
     a(Re, "getArcPts");
@@ -1366,8 +1366,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       if (!n || !r)
         throw new Error('drawLine() requires properties "p1" and "p2".');
       let u = e.width || 1, c = r.sub(n).unit().normal().scale(u * 0.5), s = [n.sub(c), n.add(c), r.add(c), r.sub(c)].map((o) => {
-        var d, h;
-        return { pos: de(o.x, o.y, 0), uv: f(0), color: (d = e.color) != null ? d : v.WHITE, opacity: (h = e.opacity) != null ? h : 1 };
+        var d, h2;
+        return { pos: de(o.x, o.y, 0), uv: f(0), color: (d = e.color) != null ? d : v.WHITE, opacity: (h2 = e.opacity) != null ? h2 : 1 };
       });
       Tt(s, [0, 1, 3, 1, 2, 3], e.fixed, l.defTex, e.shader, e.uniform);
     }
@@ -1425,8 +1425,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       if (!(n < 3)) {
         if (re(), I(e.pos), ne(e.scale), Je(e.angle), I(e.offset), e.fill !== false) {
           let c = (r = e.color) != null ? r : v.WHITE, s = e.pts.map((d) => {
-            var h;
-            return { pos: de(d.x, d.y, 0), uv: f(0, 0), color: c, opacity: (h = e.opacity) != null ? h : 1 };
+            var h2;
+            return { pos: de(d.x, d.y, 0), uv: f(0, 0), color: c, opacity: (h2 = e.opacity) != null ? h2 : 1 };
           }), o = [...Array(n - 2).keys()].map((d) => [0, d + 1, d + 2]).flat();
           Tt(s, (u = e.indices) != null ? u : o, e.fixed, l.defTex, e.shader, e.uniform);
         }
@@ -1465,10 +1465,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       var Qn, Zn, er;
       if (e.text === void 0)
         throw new Error('formatText() requires property "text".');
-      let n = gn((Qn = e.font) != null ? Qn : i.font, U.fonts, ws);
+      let n = gn((Qn = e.font) != null ? Qn : i2.font, U.fonts, ws);
       if (!n)
         throw new Error(`Font not found: ${e.font}`);
-      let { charStyleMap: r, text: u } = $r(e.text + ""), c = u.split(""), s = n.qw * n.tex.width, o = n.qh * n.tex.height, d = e.size || o, h = f(d / o).scale(f(e.scale || 1)), m = h.x * s + ((Zn = e.letterSpacing) != null ? Zn : 0), g = h.y * o + ((er = e.lineSpacing) != null ? er : 0), y = 0, x = g, W = 0, O = [], M = [], ee = null, te = 0;
+      let { charStyleMap: r, text: u } = $r(e.text + ""), c = u.split(""), s = n.qw * n.tex.width, o = n.qh * n.tex.height, d = e.size || o, h2 = f(d / o).scale(f(e.scale || 1)), m = h2.x * s + ((Zn = e.letterSpacing) != null ? Zn : 0), g = h2.y * o + ((er = e.lineSpacing) != null ? er : 0), y = 0, x = g, W = 0, O = [], M = [], ee = null, te = 0;
       for (; te < c.length; ) {
         let oe = c[te];
         oe === `
@@ -1483,7 +1483,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           var tr;
           let Gt = n.map[ct], Yi = ji * m, $i = Bi * g;
           if (Gt) {
-            let _t = { tex: n.tex, quad: new k(Gt.x, Gt.y, n.qw, n.qh), ch: ct, pos: f(Oe.x + Yi + se + Ni, Oe.y + $i + Ie), opacity: e.opacity, color: (tr = e.color) != null ? tr : E(255, 255, 255), scale: h, angle: 0, uniform: e.uniform, fixed: e.fixed };
+            let _t = { tex: n.tex, quad: new k(Gt.x, Gt.y, n.qw, n.qh), ch: ct, pos: f(Oe.x + Yi + se + Ni, Oe.y + $i + Ie), opacity: e.opacity, color: (tr = e.color) != null ? tr : E(255, 255, 255), scale: h2, angle: 0, uniform: e.uniform, fixed: e.fixed };
             if (e.transform) {
               let lt = typeof e.transform == "function" ? e.transform(ut, ct) : e.transform;
               lt && mn(_t, lt);
@@ -1517,33 +1517,33 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     function Un() {
       let e = t.gl, n = e.drawingBufferWidth, r = e.drawingBufferHeight, u = F(), c = G();
       if (vn()) {
-        let s = window.innerWidth, o = window.innerHeight, d = s / o, h = n / r;
-        if (d > h) {
-          let m = window.innerHeight * h;
+        let s = window.innerWidth, o = window.innerHeight, d = s / o, h2 = n / r;
+        if (d > h2) {
+          let m = window.innerHeight * h2;
           l.viewport = { x: (s - m) / 2, y: 0, width: m, height: o };
         } else {
-          let m = window.innerWidth / h;
+          let m = window.innerWidth / h2;
           l.viewport = { x: 0, y: (o - m) / 2, width: s, height: m };
         }
         return;
       }
-      if (i.letterbox) {
-        if (!i.width || !i.height)
+      if (i2.letterbox) {
+        if (!i2.width || !i2.height)
           throw new Error("Letterboxing requires width and height defined.");
-        let s = n / r, o = i.width / i.height;
+        let s = n / r, o = i2.width / i2.height;
         if (s > o) {
-          i.stretch || (l.width = r * o, l.height = r);
-          let d = r * o, h = r, m = (n - d) / 2;
-          e.scissor(m, 0, d, h), e.viewport(m, 0, d, r), l.viewport = { x: m, y: 0, width: d, height: r };
+          i2.stretch || (l.width = r * o, l.height = r);
+          let d = r * o, h2 = r, m = (n - d) / 2;
+          e.scissor(m, 0, d, h2), e.viewport(m, 0, d, r), l.viewport = { x: m, y: 0, width: d, height: r };
         } else {
-          i.stretch || (l.width = n, l.height = n / o);
-          let d = n, h = n / o, m = (r - h) / 2;
-          e.scissor(0, m, d, h), e.viewport(0, m, n, h), l.viewport = { x: 0, y: m, width: n, height: h };
+          i2.stretch || (l.width = n, l.height = n / o);
+          let d = n, h2 = n / o, m = (r - h2) / 2;
+          e.scissor(0, m, d, h2), e.viewport(0, m, n, h2), l.viewport = { x: 0, y: m, width: n, height: h2 };
         }
         return;
       }
-      if (i.stretch) {
-        if (!i.width || !i.height)
+      if (i2.stretch) {
+        if (!i2.width || !i2.height)
           throw new Error("Stretching requires width and height defined.");
         e.viewport(0, 0, n, r), l.viewport = { x: 0, y: 0, width: n, height: r };
         return;
@@ -1576,21 +1576,21 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       let n = Pr[e.key] || e.key.toLowerCase();
       t.keyStates[n] = "released", t.isKeyReleased = true;
     }), t.canvas.addEventListener("touchstart", (e) => {
-      if (!i.touchToMouse)
+      if (!i2.touchToMouse)
         return;
       e.preventDefault();
       let n = e.touches[0];
       t.mousePos = f(n.clientX, n.clientY).scale(1 / t.scale), t.mouseStates.left = "pressed";
     }), t.canvas.addEventListener("touchmove", (e) => {
-      if (!i.touchToMouse)
+      if (!i2.touchToMouse)
         return;
       e.preventDefault();
       let n = e.touches[0];
       t.mousePos = f(n.clientX, n.clientY).scale(1 / t.scale), t.isMouseMoved = true;
     }), t.canvas.addEventListener("touchend", (e) => {
-      !i.touchToMouse || (t.mouseStates.left = "released");
+      !i2.touchToMouse || (t.mouseStates.left = "released");
     }), t.canvas.addEventListener("touchcancel", (e) => {
-      !i.touchToMouse || (t.mouseStates.left = "released");
+      !i2.touchToMouse || (t.mouseStates.left = "released");
     }), t.canvas.addEventListener("touchstart", (e) => {
       [...e.changedTouches].forEach((n) => {
         p.trigger("onTouchStart", n.identifier, f(n.clientX, n.clientY).scale(1 / t.scale));
@@ -1779,24 +1779,24 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         s.id && (this.unuse(s.id), n.set(s.id, {}));
         let o = s.id ? n.get(s.id) : r;
         o.cleanups = [];
-        for (let h in s)
-          if (!ys.has(h)) {
-            if (typeof s[h] == "function") {
-              let m = s[h].bind(this);
-              if (bs.has(h)) {
-                o.cleanups.push(this.on(h, m)), o[h] = m;
+        for (let h2 in s)
+          if (!ys.has(h2)) {
+            if (typeof s[h2] == "function") {
+              let m = s[h2].bind(this);
+              if (bs.has(h2)) {
+                o.cleanups.push(this.on(h2, m)), o[h2] = m;
                 continue;
               } else
-                o[h] = m;
+                o[h2] = m;
             } else
-              o[h] = s[h];
-            this[h] === void 0 && Object.defineProperty(this, h, { get: () => o[h], set: (m) => o[h] = m, configurable: true, enumerable: true });
+              o[h2] = s[h2];
+            this[h2] === void 0 && Object.defineProperty(this, h2, { get: () => o[h2], set: (m) => o[h2] = m, configurable: true, enumerable: true });
           }
         let d = a(() => {
           if (!!s.require) {
-            for (let h of s.require)
-              if (!this.c(h))
-                throw new Error(`comp '${s.id}' requires comp '${h}'`);
+            for (let h2 of s.require)
+              if (!this.c(h2))
+                throw new Error(`comp '${s.id}' requires comp '${h2}'`);
           }
         }, "checkDeps");
         this.exists() ? (s.add && s.add.call(this), s.load && Ue(() => s.load.call(this)), d()) : s.require && o.cleanups.push(this.on("add", d));
@@ -1813,8 +1813,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, get(s) {
         return this.children.filter((o) => s ? o.is(s) : true).sort((o, d) => {
           var g, y, x, W, O, M;
-          let h = (y = p.layers[(g = o.layer) != null ? g : p.defLayer]) != null ? y : 0, m = (W = p.layers[(x = d.layer) != null ? x : p.defLayer]) != null ? W : 0;
-          return h == m ? ((O = o.z) != null ? O : 0) - ((M = d.z) != null ? M : 0) : h - m;
+          let h2 = (y = p.layers[(g = o.layer) != null ? g : p.defLayer]) != null ? y : 0, m = (W = p.layers[(x = d.layer) != null ? x : p.defLayer]) != null ? W : 0;
+          return h2 == m ? ((O = o.z) != null ? O : 0) - ((M = d.z) != null ? M : 0) : h2 - m;
         });
       }, every(s, o) {
         if (typeof s == "function" && o === void 0)
@@ -1844,10 +1844,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, action(...s) {
         return console.warn("action() is deprecated. Use onUpdate() instead"), this.onUpdate(...s);
       }, trigger(s, ...o) {
-        u[s] && u[s].forEach((h) => h.call(this, ...o));
+        u[s] && u[s].forEach((h2) => h2.call(this, ...o));
         let d = p.objEvents[s];
-        d && d.forEach((h) => {
-          this.is(h.tag) && h.cb(this, ...o);
+        d && d.forEach((h2) => {
+          this.is(h2.tag) && h2.cb(this, ...o);
         });
       }, destroy() {
         var s;
@@ -1894,7 +1894,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     __name(Tn, "Tn");
     a(Tn, "onDraw");
     function Sn(e, n, r) {
-      let u = qe("collide", e, (o, d, h) => d.is(n) && r(o, d, h)), c = qe("collide", n, (o, d, h) => d.is(e) && r(d, o, h)), s = Pe(e, (o) => {
+      let u = qe("collide", e, (o, d, h2) => d.is(n) && r(o, d, h2)), c = qe("collide", n, (o, d, h2) => d.is(e) && r(d, o, h2)), s = Pe(e, (o) => {
         if (!o.area)
           throw new Error("onCollide() requires the object to have area() component");
         o._checkCollisions(n, (d) => {
@@ -2062,11 +2062,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         let r = f(...n), u = r.x, c = r.y, s = null;
         if (this.solid && ((o = this.area) == null ? void 0 : o.shape) === "rect") {
           let d = this.worldArea();
-          p.root.every((h) => {
+          p.root.every((h2) => {
             var Oe;
-            if (!this.exists() || h === this || !h.solid || ((Oe = h.area) == null ? void 0 : Oe.shape) !== "rect")
+            if (!this.exists() || h2 === this || !h2.solid || ((Oe = h2.area) == null ? void 0 : Oe.shape) !== "rect")
               return;
-            let m = h.worldArea(), g = yt(m, d);
+            let m = h2.worldArea(), g = yt(m, d);
             if (ae(g, f(0))) {
               let _ = Math.min(Math.abs(g.p1.x), Math.abs(g.p2.x), Math.abs(g.p1.y), Math.abs(g.p2.y)), se = (() => {
                 switch (_) {
@@ -2094,7 +2094,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
             }
             if (x < 1 && !(x === 0 && te == 1 && !ae(g, f(u, c)))) {
               let _ = f(-u * (1 - x), -c * (1 - x));
-              u *= x, c *= x, s = kn(h, _);
+              u *= x, c *= x, s = kn(h2, _);
             }
           });
         }
@@ -2256,8 +2256,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           this.isHovering() ? c() : s && s();
         });
       }, onCollide(c, s) {
-        let o = this.onUpdate(() => this._checkCollisions(c, s)), d = this.on("collide", (h, m) => h.is(c) && s(h, m));
-        return () => [o, d].forEach((h) => h());
+        let o = this.onUpdate(() => this._checkCollisions(c, s)), d = this.on("collide", (h2, m) => h2.is(c) && s(h2, m));
+        return () => [o, d].forEach((h2) => h2());
       }, clicks(...c) {
         return B("clicks()", "onClick()"), this.onClick(...c);
       }, hovers(...c) {
@@ -2273,16 +2273,16 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         let s = this.worldArea(), o = c.worldArea(), d = yt(s, o);
         if (!ae(d, f(0)))
           return null;
-        let h = Math.min(Math.abs(d.p1.x), Math.abs(d.p2.x), Math.abs(d.p1.y), Math.abs(d.p2.y)), m = (() => {
-          switch (h) {
+        let h2 = Math.min(Math.abs(d.p1.x), Math.abs(d.p2.x), Math.abs(d.p1.y), Math.abs(d.p2.y)), m = (() => {
+          switch (h2) {
             case Math.abs(d.p1.x):
-              return f(h, 0);
+              return f(h2, 0);
             case Math.abs(d.p2.x):
-              return f(-h, 0);
+              return f(-h2, 0);
             case Math.abs(d.p1.y):
-              return f(0, h);
+              return f(0, h2);
             case Math.abs(d.p2.y):
-              return f(0, -h);
+              return f(0, -h2);
           }
         })();
         this.pos = this.pos.add(m);
@@ -2303,8 +2303,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           throw new Error("failed to get area dimension");
         let o = f((y = this.scale) != null ? y : 1).scale(this.area.scale);
         c *= o.x, s *= o.y;
-        let d = Ye(this.origin || Ne), h = ((x = this.pos) != null ? x : f(0)).add(this.area.offset).sub(d.add(1, 1).scale(0.5).scale(c, s));
-        return { shape: "rect", p1: h, p2: f(h.x + c, h.y + s) };
+        let d = Ye(this.origin || Ne), h2 = ((x = this.pos) != null ? x : f(0)).add(this.area.offset).sub(d.add(1, 1).scale(0.5).scale(c, s));
+        return { shape: "rect", p1: h2, p2: f(h2.x + c, h2.y + s) };
       }, screenArea() {
         let c = this.worldArea();
         return this.fixed ? c : { shape: "rect", p1: rt(c.p1), p2: rt(c.p2) };
@@ -2320,9 +2320,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     function Vt(e, n = {}) {
       var s;
       let r = null, u = null;
-      function c(o, d, h, m) {
+      function c(o, d, h2, m) {
         let g = f(1, 1);
-        return h && m ? (g.x = h / (o.width * d.w), g.y = m / (o.height * d.h)) : h ? (g.x = h / (o.width * d.w), g.y = g.x) : m && (g.y = m / (o.height * d.h), g.x = g.y), g;
+        return h2 && m ? (g.x = h2 / (o.width * d.w), g.y = m / (o.height * d.h)) : h2 ? (g.x = h2 / (o.width * d.w), g.y = g.x) : m && (g.y = m / (o.height * d.h), g.x = g.y), g;
       }
       __name(c, "c");
       return a(c, "calcTexScale"), { id: "sprite", width: 0, height: 0, frame: n.frame || 0, quad: n.quad || new k(0, 0, 1, 1), animSpeed: (s = n.animSpeed) != null ? s : 1, load() {
@@ -2353,11 +2353,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           });
           return;
         }
-        let h = r.anims[o];
-        if (h == null)
+        let h2 = r.anims[o];
+        if (h2 == null)
           throw new Error(`anim not found: ${o}`);
-        u && this.stop(), u = { name: o, timer: 0, loop: (g = (m = d.loop) != null ? m : h.loop) != null ? g : false, pingpong: (x = (y = d.pingpong) != null ? y : h.pingpong) != null ? x : false, speed: (O = (W = d.speed) != null ? W : h.speed) != null ? O : 10, onEnd: (M = d.onEnd) != null ? M : () => {
-        } }, typeof h == "number" ? this.frame = h : this.frame = h.from, this.trigger("animPlay", o), this.trigger("animStart", o);
+        u && this.stop(), u = { name: o, timer: 0, loop: (g = (m = d.loop) != null ? m : h2.loop) != null ? g : false, pingpong: (x = (y = d.pingpong) != null ? y : h2.pingpong) != null ? x : false, speed: (O = (W = d.speed) != null ? W : h2.speed) != null ? O : 10, onEnd: (M = d.onEnd) != null ? M : () => {
+        } }, typeof h2 == "number" ? this.frame = h2 : this.frame = h2.from, this.trigger("animPlay", o), this.trigger("animStart", o);
       }, stop() {
         if (!u)
           return;
@@ -2372,12 +2372,12 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, flipY(o) {
         n.flipY = o;
       }, onAnimEnd(o, d) {
-        return this.on("animEnd", (h) => {
-          h === o && d();
+        return this.on("animEnd", (h2) => {
+          h2 === o && d();
         });
       }, onAnimStart(o, d) {
-        return this.on("animStart", (h) => {
-          h === o && d();
+        return this.on("animStart", (h2) => {
+          h2 === o && d();
         });
       }, inspect() {
         let o = "";
@@ -2451,10 +2451,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       let n = 0, r = null, u = null, c = true;
       return { id: "body", require: ["pos", "area"], jumpForce: (s = e.jumpForce) != null ? s : yi, weight: (o = e.weight) != null ? o : 1, solid: (d = e.solid) != null ? d : true, update() {
         var m;
-        let h = false;
+        let h2 = false;
         if (r) {
           let g = this.worldArea(), y = r.worldArea(), x = g.p2.y, W = y.p1.y, O = g.p1.x, M = g.p2.x, ee = y.p1.x, te = y.p2.x;
-          !r.exists() || x !== W || M < ee || O > te ? (this.trigger("fall", r), r = null, u = null, h = true) : u && r.pos && (this.pos = this.pos.add(r.pos.sub(u)), u = r.pos.clone());
+          !r.exists() || x !== W || M < ee || O > te ? (this.trigger("fall", r), r = null, u = null, h2 = true) : u && r.pos && (this.pos = this.pos.add(r.pos.sub(u)), u = r.pos.clone());
         }
         if (!r) {
           let g = this.move(0, n);
@@ -2462,7 +2462,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
             if (g.isBottom()) {
               r = g.target;
               let y = n;
-              n = 0, r.pos && (u = r.pos.clone()), h || (this.trigger("ground", r), c = true);
+              n = 0, r.pos && (u = r.pos.clone()), h2 || (this.trigger("ground", r), c = true);
             } else
               g.isTop() && (n = 0, this.trigger("headbutt", g.target));
           n += Fn() * this.weight * Z(), n = Math.min(n, (m = e.maxVel) != null ? m : bi);
@@ -2477,18 +2477,18 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         return n > 0;
       }, falling() {
         return B("falling()", "isFalling()"), this.isFalling();
-      }, jump(h) {
-        r = null, u = null, n = -h || -this.jumpForce;
-      }, doubleJump(h) {
-        this.isGrounded() ? this.jump(h) : c && (c = false, this.jump(h), this.trigger("doubleJump"));
-      }, onGround(h) {
-        return this.on("ground", h);
-      }, onFall(h) {
-        return this.on("fall", h);
-      }, onHeadbutt(h) {
-        return this.on("headbutt", h);
-      }, onDoubleJump(h) {
-        return this.on("doubleJump", h);
+      }, jump(h2) {
+        r = null, u = null, n = -h2 || -this.jumpForce;
+      }, doubleJump(h2) {
+        this.isGrounded() ? this.jump(h2) : c && (c = false, this.jump(h2), this.trigger("doubleJump"));
+      }, onGround(h2) {
+        return this.on("ground", h2);
+      }, onFall(h2) {
+        return this.on("fall", h2);
+      }, onHeadbutt(h2) {
+        return this.on("headbutt", h2);
+      }, onDoubleJump(h2) {
+        return this.on("doubleJump", h2);
       } };
     }
     __name(xi, "xi");
@@ -2557,16 +2557,16 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }
       __name(c, "c");
       a(c, "initStateHook");
-      function s(d, h, m) {
-        c(h), u[h][d].push(m);
+      function s(d, h2, m) {
+        c(h2), u[h2][d].push(m);
       }
       __name(s, "s");
       a(s, "on");
-      function o(d, h, ...m) {
-        c(h), u[h][d].forEach((g) => g(...m));
+      function o(d, h2, ...m) {
+        c(h2), u[h2][d].forEach((g) => g(...m));
       }
       __name(o, "o");
-      return a(o, "trigger"), { id: "state", state: e, enterState(d, ...h) {
+      return a(o, "trigger"), { id: "state", state: e, enterState(d, ...h2) {
         if (n && !n.includes(d))
           throw new Error(`State not found: ${d}`);
         let m = this.state;
@@ -2577,17 +2577,17 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           if (!g.includes(d))
             throw new Error(`Cannot transition state from "${m}" to "${d}". Available transitions: ${g.map((y) => `"${y}"`).join(", ")}`);
         }
-        o("leave", m, ...h), this.state = d, o("enter", d, ...h), o("enter", `${m} -> ${d}`, ...h);
-      }, onStateTransition(d, h, m) {
-        s("enter", `${d} -> ${h}`, m);
-      }, onStateEnter(d, h) {
-        s("enter", d, h);
-      }, onStateUpdate(d, h) {
-        s("update", d, h);
-      }, onStateDraw(d, h) {
-        s("draw", d, h);
-      }, onStateLeave(d, h) {
-        s("leave", d, h);
+        o("leave", m, ...h2), this.state = d, o("enter", d, ...h2), o("enter", `${m} -> ${d}`, ...h2);
+      }, onStateTransition(d, h2, m) {
+        s("enter", `${d} -> ${h2}`, m);
+      }, onStateEnter(d, h2) {
+        s("enter", d, h2);
+      }, onStateUpdate(d, h2) {
+        s("update", d, h2);
+      }, onStateDraw(d, h2) {
+        s("draw", d, h2);
+      }, onStateLeave(d, h2) {
+        s("leave", d, h2);
       }, update() {
         o("update", this.state);
       }, draw() {
@@ -2614,7 +2614,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       let r = p.on("updateStart", () => {
         p.events = {}, p.objEvents = { add: new $(), update: new $(), draw: new $(), destroy: new $() }, p.root.every((u) => {
           u.is("stay") || p.root.remove(u);
-        }), p.root.clearEvents(), p.timers = new $(), p.cam = { pos: ot(), scale: f(1), angle: 0, shake: 0, transform: new R() }, p.layers = {}, p.defLayer = null, p.gravity = Vr, p.scenes[e](...n), i.debug !== false && In(), i.burp && Vn(), r();
+        }), p.root.clearEvents(), p.timers = new $(), p.cam = { pos: ot(), scale: f(1), angle: 0, shake: 0, transform: new R() }, p.layers = {}, p.defLayer = null, p.gravity = Vr, p.scenes[e](...n), i2.debug !== false && In(), i2.burp && Vn(), r();
       });
     }
     __name(Mi, "Mi");
@@ -2636,7 +2636,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     function Bn(e) {
       let n = e(ye);
       for (let r in n)
-        ye[r] = n[r], i.global !== false && (window[r] = n[r]);
+        ye[r] = n[r], i2.global !== false && (window[r] = n[r]);
       return ye;
     }
     __name(Bn, "Bn");
@@ -2675,23 +2675,23 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         let d = f(...o);
         return f(u.x + d.x * n.width, u.y + d.y * n.height);
       }, spawn(o, ...d) {
-        let h = f(...d), m = (() => {
+        let h2 = f(...d), m = (() => {
           if (n[o]) {
             if (typeof n[o] != "function")
               throw new Error("level symbol def must be a function returning a component list");
-            return n[o](h);
+            return n[o](h2);
           } else if (n.any)
-            return n.any(o, h);
+            return n.any(o, h2);
         })();
         if (!m)
           return;
-        let g = f(u.x + h.x * n.width, u.y + h.y * n.height);
+        let g = f(u.x + h2.x * n.width, u.y + h2.y * n.height);
         for (let x of m)
           if (x.id === "pos") {
             g.x += x.pos.x, g.y += x.pos.y;
             break;
           }
-        m.push(it(g)), m.push(qi(this, h));
+        m.push(it(g)), m.push(qi(this, h2));
         let y = p.root.add(m);
         return r.push(y), y;
       }, width() {
@@ -2703,8 +2703,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           o.destroy();
       } };
       return e.forEach((o, d) => {
-        let h = o.split("");
-        c = Math.max(h.length, c), h.forEach((m, g) => {
+        let h2 = o.split("");
+        c = Math.max(h2.length, c), h2.forEach((m, g) => {
           s.spawn(m, f(g, d));
         });
       }), s;
@@ -2718,7 +2718,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       return s.ondataavailable = (d) => {
         d.data.size > 0 && o.push(d.data);
       }, s.onerror = (d) => {
-        w.masterNode.disconnect(r), n.getTracks().forEach((h) => h.stop());
+        w.masterNode.disconnect(r), n.getTracks().forEach((h2) => h2.stop());
       }, s.start(), { resume() {
         s.resume();
       }, pause() {
@@ -2726,7 +2726,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, download(d = "kaboom.mp4") {
         s.onstop = () => {
           ur(new Blob(o, { type: "video/mp4" }), d);
-        }, s.stop(), w.masterNode.disconnect(r), n.getTracks().forEach((h) => h.stop());
+        }, s.stop(), w.masterNode.disconnect(r), n.getTracks().forEach((h2) => h2.stop());
       } };
     }
     __name(Nn, "Nn");
@@ -2836,13 +2836,13 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     function zn() {
       var e, n;
       if (C.inspect) {
-        let r = null, u = v.fromArray((e = i.inspectColor) != null ? e : [0, 0, 255]);
+        let r = null, u = v.fromArray((e = i2.inspectColor) != null ? e : [0, 0, 255]);
         if (p.root.every((c) => {
           if (!c.area || c.hidden)
             return;
           r || c.isHovering() && (r = c);
-          let s = r === c ? 8 : 4, o = c.worldArea(), d = o.p2.x - o.p1.x, h = o.p2.y - o.p1.y;
-          Q({ pos: o.p1, width: d, height: h, outline: { width: s, color: u }, fill: false, fixed: c.fixed });
+          let s = r === c ? 8 : 4, o = c.worldArea(), d = o.p2.x - o.p1.x, h2 = o.p2.y - o.p1.y;
+          Q({ pos: o.p1, width: d, height: h2, outline: { width: s, color: u }, fill: false, fixed: c.fixed });
         }), r) {
           let c = [], s = r.inspect();
           for (let o in s)
@@ -2872,7 +2872,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }
       if (C.curRecording && (re(), I(0, G()), ne(1 / t.scale), I(24, -24), Ct({ radius: 12, color: E(255, 0, 0), opacity: Kt(0, 1, nt() * 4), fixed: true }), ie()), C.showLog && p.logs.length > 0) {
         re(), I(0, G()), ne(1 / t.scale), I(8, -8);
-        let r = 8, u = (n = i.logMax) != null ? n : 1;
+        let r = 8, u = (n = i2.logMax) != null ? n : 1;
         p.logs.length > u && (p.logs = p.logs.slice(0, u));
         let c = me({ text: p.logs.join(`
 `), font: U.fonts[rn], pos: f(r, -r), origin: "botleft", size: 16, width: F() * t.scale * 0.6, lineSpacing: r / 2, fixed: true, styles: { time: { color: E(127, 127, 127) }, info: { color: E(255, 255, 255) }, error: { color: E(255, 0, 127) } } });
@@ -2880,7 +2880,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }
     }
     __name(zn, "zn");
-    a(zn, "drawDebug"), i.debug !== false && In(), i.burp && Vn(), window.addEventListener("error", (e) => {
+    a(zn, "drawDebug"), i2.debug !== false && In(), i2.burp && Vn(), window.addEventListener("error", (e) => {
       C.error(`Error: ${e.error.message}`), zr(), Jn(() => {
         A() === 1 && (He(), zn(), ze());
       });
@@ -2903,14 +2903,178 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     __name(Jn, "Jn");
     a(Jn, "run"), Jn(() => {
-      Un(), t.loaded ? (p.trigger("input"), C.paused || Kn(), He(), Gi(), i.debug !== false && zn(), ze()) : (He(), _i(), ze());
+      Un(), t.loaded ? (p.trigger("input"), C.paused || Kn(), He(), Gi(), i2.debug !== false && zn(), ze()) : (He(), _i(), ze());
     }), X("apl386", Tr, 45, 74), X("apl386o", Sr, 45, 74), X("sink", Cr, 6, 8, { chars: "\u2588\u263A\u263B\u2665\u2666\u2663\u2660\u25CF\u25CB\u25AA\u25A1\u25A0\u25D8\u266A\u266B\u2261\u25BA\u25C4\u2302\xDE\xC0\xDF\xD7\xA5\u2191\u2193\u2192\u2190\u25CC\u25CF\u25BC\u25B2 !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u03A7\u2591\u2592\u2593\u1E00\u1E01\u1E02\u2502\u252C\u2524\u250C\u2510\u1E03\u1E04\u253C\u1E05\u1E06\u1E07\u1E08\u1E09\u1E0A\u1E0B\u1E0C\u2500\u251C\u2534\u2514\u2518\u1E0D\u1E0E\u205E\u1E0F\u1E10\u1E11\u1E12\u1E13\u1E14\u1E15\u1E16\u1E17\u1E18\u2584\u1E19\u1E1A\u1E1B\u1E1C\u2026\u1E1D\u1E1E\u1E1F\u1E20\u1E21\u1E22\u1E23\u1E24\u1E25\u1E26\u258C\u2590\u1E27\u1E28\u1E29\u1E2A\u1E2B\u1E2C\u1E2D\u1E2E\u1E2F\u1E30\u1E31\u1E32\u1E33\u1E34\u1E35\u1E36\u1E37\u1E38\u1E39\u1E3A\u1E3B\u1E3C\u1E3D\u1E3E\u1E3F\u1E40\u1E41\u1E42\u1E43\u1E44\u1E45\u1E46\u1E47\u1E48\u1E49\u1E4A\u1E4B\u1E4C\u1E4D\u1E4E\u1E4F\u1E50\u1E51\u1E52\u1E53\u1E54\u1E55\u1E56\u1E57\u1E58\u1E59\u1E5A\u1E5B\u1E5C\u1E5D\u1E5E\u1E5F\u1E60\u1E61\u1E62\u1E63\u1E64\u1E65\u1E66\u1E67\u1E68\u1E69\u1E6A\u1E6B\u1E6C\u1E6D\u1E6E\u1E6F\u1E70\u1E71\u1E72\u1E73\u1E74\u1E75\u1E76\u1E77\u1E78\u1E79\u1E7A\u1E7B\u1E7C" }), X("sinko", Rr, 8, 10), He(), ze();
     let ye = { loadRoot: q, loadSprite: J, loadSpriteAtlas: Ee, loadSound: Ce, loadFont: X, loadShader: Se, loadAseprite: Et, loadPedit: $e, loadBean: _r, load: S, width: F, height: G, center: ot, dt: Z, time: nt, screenshot: bn, record: Nn, isFocused: jn, focus: Di, cursor: xn, regCursor: ii, fullscreen: Hr, isFullscreen: vn, onLoad: Ue, isTouch: () => t.isTouch, layers: Qr, camPos: Zr, camScale: ei, camRot: ti, shake: ni, toScreen: rt, toWorld: Lt, gravity: Fn, add: kt, readd: Ai, destroy: at, destroyAll: Oi, get: Ii, every: Vi, revery: Fi, pos: it, scale: st, rotate: si, color: oi, opacity: ai, origin: Ot, layer: ui, area: fi, sprite: Vt, text: pi, rect: mi, circle: gi, uvquad: wi, outline: Ui, body: xi, shader: vi, timer: Gn, solid: Ei, fixed: Ti, stay: Ft, health: Si, lifespan: Ci, z: ci, move: hi, outview: It, cleanup: di, follow: li, state: Ri, on: qe, onUpdate: Pe, onDraw: Tn, onCollide: Sn, onClick: Cn, onHover: Rn, onKeyDown: qt, onKeyPress: H, onKeyPressRepeat: Pt, onKeyRelease: Dt, onMouseDown: Mn, onMousePress: At, onMouseRelease: Ln, onMouseMove: qn, onCharInput: Pn, onTouchStart: Dn, onTouchMove: An, onTouchEnd: On, mousePos: K, mouseWorldPos: Jr, mouseDeltaPos: yn, isKeyDown: Mt, isKeyPressed: Le, isKeyPressedRepeat: Wt, isKeyReleased: tt, isMouseDown: Ze, isMousePressed: Me, isMouseReleased: et, isMouseMoved: Rt, loop: ri, wait: Wn, play: Xe, volume: Br, burp: un, audioCtx: w.ctx, Timer: fe, Line: le, Rect: ke, Circle: ht, Vec2: L, Color: v, Mat4: R, Quad: k, RNG: be, rng: mr, rand: Ge, randi: Ht, randSeed: wr, vec2: f, rgb: E, hsl2rgb: fr, quad: pr, choose: Ur, chance: gr, lerp: Ve, map: dt, mapc: dr, wave: Kt, deg2rad: he, rad2deg: Xt, testAreaRect: gt, testAreaLine: Zt, testAreaCircle: en, testAreaPolygon: tn, testAreaPoint: Ut, testAreaArea: nn, testLineLine: ce, testRectRect: zt, testRectLine: ft, testRectPoint: ae, testPolygonPoint: xe, testLinePolygon: _e, testPolygonPolygon: wt, testCircleCircle: Qt, testCirclePoint: mt, testRectPolygon: pt, drawSprite: hn, drawText: Xr, formatText: me, drawRect: Q, drawLine: We, drawLines: dn, drawTriangle: fn, drawCircle: Ct, drawEllipse: pn, drawUVQuad: pe, drawPolygon: Qe, drawFormattedText: we, pushTransform: re, popTransform: ie, pushTranslate: I, pushRotate: Je, pushScale: ne, debug: C, scene: Wi, go: Mi, addLevel: Pi, getData: Li, setData: _n, plug: Bn, ASCII_CHARS: Ar, CP437_CHARS: hs, canvas: t.canvas, addKaboom: ki, LEFT: L.LEFT, RIGHT: L.RIGHT, UP: L.UP, DOWN: L.DOWN, RED: v.RED, GREEN: v.GREEN, BLUE: v.BLUE, YELLOW: v.YELLOW, MAGENTA: v.MAGENTA, CYAN: v.CYAN, WHITE: v.WHITE, BLACK: v.BLACK, keyIsDown: T("keyIsDown()", "isKeyDown()", Mt), keyIsPressed: T("keyIsPressed()", "isKeyPressed()", Le), keyIsPressedRep: T("keyIsPressedRep()", "isKeyPressedRepeat()", Wt), keyIsReleased: T("keyIsReleased()", "isKeyReleased()", tt), mouseIsDown: T("mouseIsDown()", "isMouseDown()", Ze), mouseIsClicked: T("mouseIsClicked()", "isMousePressed()", Me), mouseIsReleased: T("mouseIsReleased()", "isMouseReleased()", et), mouseIsMoved: T("mouseIsMoved()", "isMouseMoved()", Rt), dir: T("dir()", "Vec2.fromAngle()", L.fromAngle), action: T("action()", "onUpdate()", Pe), render: T("render()", "onDraw()", Tn), collides: T("collides()", "onCollide()", Sn), clicks: T("clicks()", "onClick()", Cn), hovers: T("hovers()", "onHover()", Rn), keyDown: T("keyDown()", "onKeyDown()", qt), keyPress: T("keyPress()", "onKeyPress()", H), keyPressRep: T("keyPressRep()", "onKeyPressRepeat()", Pt), keyRelease: T("keyRelease()", "onKeyRelease()", Dt), mouseDown: T("mouseDown()", "onMouseDown()", Mn), mouseClick: T("mouseClick()", "onMousePress()", At), mouseRelease: T("mouseRelease()", "onMouseRelease()", Ln), mouseMove: T("mouseMove()", "onMouseMove()", qn), charInput: T("charInput()", "onCharInput()", Pn), touchStart: T("touchStart()", "onTouchStart()", Dn), touchMove: T("touchMove()", "onTouchMove()", An), touchEnd: T("touchEnd()", "onTouchEnd()", On), focused: T("focused()", "isFocused()", jn), ready: T("ready()", "onLoad()", Ue) };
-    if (i.plugins && i.plugins.forEach(Bn), i.global !== false)
+    if (i2.plugins && i2.plugins.forEach(Bn), i2.global !== false)
       for (let e in ye)
         window[e] = ye[e];
     return ye;
   }, "default");
+
+  // code/easing.js
+  var easings = {
+    linear: (x) => {
+      return x;
+    },
+    easeInSine: (x) => {
+      return 1 - Math.cos(x * Math.PI / 2);
+    },
+    easeOutSine: (x) => {
+      return Math.sin(x * Math.PI / 2);
+    },
+    easeInOutSine: (x) => {
+      return -(Math.cos(Math.PI * x) - 1) / 2;
+    },
+    easeInQuad: (x) => {
+      return x * x;
+    },
+    easeOutQuad: (x) => {
+      return 1 - (1 - x) * (1 - x);
+    },
+    easeInOutQuad: (x) => {
+      return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+    },
+    easeInCubic: (x) => {
+      return x * x * x;
+    },
+    easeOutCubic: (x) => {
+      return 1 - Math.pow(1 - x, 3);
+    },
+    easeInOutCubic: (x) => {
+      return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    },
+    easeInQuart: (x) => {
+      return x * x * x * x;
+    },
+    easeOutQuart: (x) => {
+      return 1 - Math.pow(1 - x, 4);
+    },
+    easeInOutQuart: (x) => {
+      return x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2;
+    },
+    easeInQuint: (x) => {
+      return x * x * x * x * x;
+    },
+    easeOutQuint: (x) => {
+      return 1 - Math.pow(1 - x, 5);
+    },
+    easeInOutQuint: (x) => {
+      return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;
+    },
+    easeInExpo: (x) => {
+      return x === 0 ? 0 : Math.pow(2, 10 * x - 10);
+    },
+    easeOutExpo: (x) => {
+      return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    },
+    easeInOutExpo: (x) => {
+      return x === 0 ? 0 : x === 1 ? 1 : x < 0.5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2;
+    },
+    easeInCirc: (x) => {
+      return 1 - Math.sqrt(1 - Math.pow(x, 2));
+    },
+    easeOutCirc: (x) => {
+      return Math.sqrt(1 - Math.pow(x - 1, 2));
+    },
+    easeInOutCirc: (x) => {
+      return x < 0.5 ? (1 - Math.sqrt(1 - Math.pow(2 * x, 2))) / 2 : (Math.sqrt(1 - Math.pow(-2 * x + 2, 2)) + 1) / 2;
+    },
+    easeInBack: (x) => {
+      const c1 = 1.70158;
+      const c3 = c1 + 1;
+      return c3 * x * x * x - c1 * x * x;
+    },
+    easeOutBack: (x) => {
+      const c1 = 1.70158;
+      const c3 = c1 + 1;
+      return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    },
+    easeInOutBack: (x) => {
+      const c1 = 1.70158;
+      const c2 = c1 * 1.525;
+      return x < 0.5 ? Math.pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2) / 2 : (Math.pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+    },
+    easeInBounce: (x) => {
+      return 1 - easings.easeOutBounce(1 - x);
+    },
+    easeOutBounce: (x) => {
+      const n1 = 7.5625;
+      const d1 = 2.75;
+      if (x < 1 / d1) {
+        return n1 * x * x;
+      } else if (x < 2 / d1) {
+        return n1 * (x -= 1.5 / d1) * x + 0.75;
+      } else if (x < 2.5 / d1) {
+        return n1 * (x -= 2.25 / d1) * x + 0.9375;
+      } else {
+        return n1 * (x -= 2.625 / d1) * x + 0.984375;
+      }
+    },
+    easeInOutBounce: (x) => {
+      return x < 0.5 ? (1 - easings.easeOutBounce(1 - 2 * x)) / 2 : (1 + easings.easeOutBounce(2 * x - 1)) / 2;
+    }
+  };
+  var tweentypes = {
+    FOREVER: (t, st, tl) => {
+      if (t - st >= tl) {
+        return "FOREVER";
+      }
+      return "CONTINUE";
+    },
+    LERPFOREVER: (t, st, tl) => {
+      return "LF";
+    },
+    PINGPONG: (t, st, tl) => {
+      if (t - st >= tl) {
+        return "PING";
+      }
+      return "CONTINUE";
+    },
+    NORMAL: (t, st, tl) => {
+      if (t - st >= tl) {
+        return "CALLBACK";
+      }
+      return "CONTINUE";
+    }
+  };
+  function tween(func, attrs, timeLen, minVal, maxVal, ease, type, onFinish) {
+    var minVal = minVal != void 0 ? minVal : func[attrs[0]];
+    var ease = ease != void 0 ? ease : easings.linear;
+    var type = type != void 0 ? type : tweentypes.NORMAL;
+    var stTime = time();
+    var onFinish = onFinish != void 0 ? onFinish : "ud";
+    var upd = onUpdate(() => {
+      switch (type(time(), stTime, timeLen)) {
+        case "CALLBACK":
+          for (h in attrs) {
+            func[attrs[h]] = maxVal;
+          }
+          upd();
+          return onFinish == "ud" ? true : onFinish();
+        case "FOREVER":
+          stTime = time();
+          break;
+        case "CONTINUE":
+          for (h in attrs) {
+            func[attrs[h]] = minVal;
+          }
+          break;
+        case "PING":
+          var buffer = minVal;
+          minVal = maxVal;
+          maxVal = buffer;
+          stTime = time();
+          break;
+        default:
+          break;
+      }
+      for (i in attrs) {
+        func[attrs[i]] = lerp(minVal, maxVal, ease((time() - stTime) / timeLen));
+      }
+    });
+  }
+  __name(tween, "tween");
 
   // code/main.js
   no({
@@ -2924,6 +3088,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     loadFont("unscii", "fonts/unscii_8x8.png", 8, 8, { chars: " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~" });
     loadSound("tutorial", "sounds/Getting it Done.mp3");
     loadSound("faith", "sounds/The Friendly Faith Plate.mp3");
+    loadSound("sonic", "sounds/SonicInMidSim.wav");
+    loadSound("green", "sounds/GreenHill.wav");
     loadSound("gameover", "sounds/gameover.mp3");
     loadSound("score", "sounds/score.mp3");
     loadSound("metro", "sounds/metro.wav");
@@ -2956,6 +3122,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     loadSound("hitsoundCarterRedacted", "sounds/hitsoundJellyBean.wav");
     loadSound("hitsoundMarc", "sounds/hitsoundJellyBean.wav");
     loadSound("hitsoundRedVelvety", "sounds/hitsoundRedVelvety.wav");
+    loadSound("hitsoundSonicAndTails", "sounds/hitsoundJellyBean.wav");
     loadSound("hitsoundMarkyMark", "sounds/burp.mp3");
     loadSprite("JellyBeanPre", "sprites/previews/JellyBeanPre.png");
     loadSprite("RedVelvetyPre", "sprites/previews/RedVelvetyPre.png");
@@ -2963,6 +3130,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     loadSprite("CarterRedactedPre", "sprites/previews/CarterRedactedPre.png");
     loadSprite("MarcPre", "sprites/previews/MarcPre.png");
     loadSprite("FaithPlatePre", "sprites/previews/FaithPlatePre.png");
+    loadSprite("SonicAndTailsPre", "sprites/previews/SonicAndTailsPre.png");
     loadSprite("tutorialBG0", "sprites/bgCake.png");
     loadSprite("tutorialFG0", "sprites/fgCake0.png");
     loadSprite("tutorialFG1", "sprites/fgCake1.png");
@@ -3104,6 +3272,136 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         }
       }
     });
+    loadSprite("sonicBG0", "sprites/SonicBG.png", {
+      sliceX: 3,
+      sliceY: 3,
+      anims: {
+        idle: {
+          from: 0,
+          to: 6,
+          speed: 10,
+          loop: true
+        }
+      }
+    });
+    loadSprite("sonicFG0", "sprites/SonicFG.png", {
+      sliceX: 3,
+      sliceY: 3,
+      anims: {
+        idle: {
+          from: 0,
+          to: 0,
+          speed: 20
+        }
+      }
+    });
+    loadSprite("SonicAndTailssonic0", "sprites/SonicMidSim.png", {
+      sliceX: 3,
+      sliceY: 4,
+      anims: {
+        idle: {
+          from: 0,
+          to: 6,
+          speed: 20
+        },
+        talk: {
+          from: 7,
+          to: 8,
+          speed: 20
+        },
+        miss: {
+          from: 9,
+          to: 11,
+          speed: 10
+        }
+      }
+    });
+    loadSprite("SonicAndTailssonic1", "sprites/TailsMidSim.png", {
+      sliceX: 3,
+      sliceY: 9,
+      anims: {
+        idle: {
+          from: 0,
+          to: 15,
+          speed: 20
+        },
+        talk: {
+          from: 16,
+          to: 23,
+          speed: 20
+        },
+        miss: {
+          from: 24,
+          to: 26,
+          speed: 10
+        }
+      }
+    });
+    loadSprite("greenBG0", "sprites/SonicBG.png", {
+      sliceX: 3,
+      sliceY: 3,
+      anims: {
+        idle: {
+          from: 0,
+          to: 6,
+          speed: 10,
+          loop: true
+        }
+      }
+    });
+    loadSprite("greenFG0", "sprites/SonicFG.png", {
+      sliceX: 3,
+      sliceY: 3,
+      anims: {
+        idle: {
+          from: 0,
+          to: 0,
+          speed: 20
+        }
+      }
+    });
+    loadSprite("SonicAndTailsgreen0", "sprites/SonicMidSim.png", {
+      sliceX: 3,
+      sliceY: 4,
+      anims: {
+        idle: {
+          from: 0,
+          to: 6,
+          speed: 20
+        },
+        talk: {
+          from: 7,
+          to: 8,
+          speed: 20
+        },
+        miss: {
+          from: 9,
+          to: 11,
+          speed: 10
+        }
+      }
+    });
+    loadSprite("SonicAndTailsgreen1", "sprites/TailsMidSim.png", {
+      sliceX: 3,
+      sliceY: 9,
+      anims: {
+        idle: {
+          from: 0,
+          to: 15,
+          speed: 20
+        },
+        talk: {
+          from: 16,
+          to: 23,
+          speed: 20
+        },
+        miss: {
+          from: 24,
+          to: 26,
+          speed: 10
+        }
+      }
+    });
     resolve("All assets loaded.");
   }));
   var charts = {
@@ -3118,6 +3416,18 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       120,
       "................................................................................................................................J...J...J...JJJJJ...J...J...J...J.J.J.J.J.J.J.J.JJJJJJJJJ.J.J.JJJ.J.J.J.J.J.JJJJJ.JJJ.J.J.J.J.J.J.JJJ.JJJ.J.J.J.JJJJJJJJJJJJJJJJJ.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.JJJ.JJJ.JJJ.JJJ.JJJ.J.J.J.J.JJJ.J.JJJJJJJJJJJJJ.J.J.J.JJJJJ.J.J.J.J.J.J.J.JJJJJ.J.J.J.J.JJ.J..J.JJJ.JJJ.J.J.JJJ.JJJ.J.J.J.JJJJJ.J.J.JJJ.JJJJJJJJJJJJJJJJJ.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.J.J.J.J.JJJ.JJJJ.JJ.J.J.J.JJ..J...J.J.J.J.J.J.JJJJJJJJJJJJJ.J.J.J.J.J.J.J.J.J.JJJJJ.J.J.J.J.J.J.J.J...J...J.J.J.J.JJJJJJJJJ.J.J.J.J.J.J.JJJ.J.JJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJJ.JJJJJJJJJJJJJJJ.JJJJJJJJJJJJJ..J.JJJ.JJJJJJJJJJ....J.J.JJJJJJJ.J.JJJ.JJJJJJJJJJJJJJJJJJJJJ.J.J.J.JJJ.JJJJJJJJJ....JJJJJJJJJ....JJJJJJJ.JJJJJJJ..JJJ..J.JJJJJJJJJJJJJJJ.JJJJJJJ..JJJ....JJJJJJJJJJJJJJJ.JJJJJJJ..JJJ....JJJJJJJJJJJJJJJ.JJJJJJJJ.JJJ..J.JJJJJJJ.J.JJJ.JJJJJJJJJJJJJ.JJJ.J...JJJ.J.JJJ.JJJJJJJJJJJJJ.JJJ.JJJ.JJJ.J.JJJJJJJJJJJJJJJJJJJJJ.JJJ.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.JJJ.JJJ.J.JJJ.JJJJJJJJJJJJJJJ...JJJJ........J...JJJJ........J...JJJJ........J...JJJJ........J.J.JJJJ........JJJ.JJJ.JJJ.J.JJJ.J.JJJJ........JJJ.JJJ.JJJ.JJJJJ.J.JJJJ........JJJ.JJJ.JJJ.J.JJJ.J.JJJJ........JJJ.JJJ.JJJ.JJJJJ.J.JJJJJ.......JJJ.J.............",
       4
+    ],
+    "sonic": [
+      2,
+      139,
+      "..................................................J.J.J.J.J.JJ....J.J.J.J..J........JJJJ..J.JJ.J..................T.T.T.T.T.TT....T...T.T..T........TTT.T.T.TT.T..................J.J.J.J.J.J.J.J.J...J...........J.J.J.J.J.JJ..J.................T.T.T.T.T.T.T.T.T...T...........T.T.T.T.T.TT..T...............J.....J.....J.J.J.JJ....T.TT........J.J.J.J.J.J.J.J...J.........T.....T.....T.T.T.TT....J.JJ....DD.D.............................................................",
+      1
+    ],
+    "green": [
+      2,
+      150,
+      "................J.....J.....J.....J.....J...J...J.....J.....J...................J.....J.....J...J.....J.....J...J.....J.................................T.T...T.T...T.T...T...........T.T.T...T.T...T.T...T.............T.T...T.T...T.T...T...........T.T.T...T.T...T.T...T.....T.......J.J...J.J...D.J.T.J.T...T.....J.J.J...J.J...D.J.T.J.T...T.......J.J...J.J...D.J.T.J.T...T.....J.J.J...J.J...D.J.T.J.D...D.....J.....J.....J.....J.T.D.T.J.....J.....J.....J.....J.T.D.T.J.....J.....J.....J.....J.T.D.T.J.T.T.T...T.T.T...T.T.T.T.T.T.T.........J.J...J.J...J.J...J...........J.J.J...J.J...J.J...J.............J.J...J.J...J.J...J...........J.J.J...J.J...J.J...J.....J.......T.T...T.T...D.T.J.T.J...J.....T.T.T...T.T...D.T.J.T.J...J.......T.T...T.T...D.T.J.T.J...J.....T.T.T...T.T...D.T.J.T.J.T.D.....T.....T.....T.....T.J.D.J.T.....T.....T.....T.....T.J.D.J.T.....T.....T.....T.....T.J.D.J.T.J.J.J...J.J.J...J.J.J.J.J.J.J................................................................................................................................................................",
+      1
     ]
   };
   var songIdx = 0;
@@ -3163,18 +3473,39 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "ui0",
       "ui1"
     ], "ui0");
-    const player = add([
-      sprite(char + song),
-      layer("JELLYBEAN"),
-      "dances",
-      song == "faith" ? pos(0, 0) : pos(width() / 2 - 162, height() - 400),
-      scale(chart[3])
-    ]);
+    var player;
+    var player2;
+    if (song == "sonic" || song == "green") {
+      player = add([
+        sprite(char + song + "0"),
+        layer("JELLYBEAN"),
+        "dances",
+        pos(20, 108),
+        scale(chart[3])
+      ]);
+      player2 = add([
+        sprite(char + song + "1"),
+        layer("JELLYBEAN"),
+        "dances",
+        pos(224, 20),
+        scale(chart[3])
+      ]);
+    } else {
+      player = add([
+        sprite(char + song),
+        layer("JELLYBEAN"),
+        "dances",
+        song == "faith" ? pos(0, 0) : pos(width() / 2 - 162, height() - 400),
+        scale(chart[3])
+      ]);
+    }
     const bg = add([
       sprite(song + "BG0"),
       layer("bg"),
       scale(chart[3])
     ]);
+    if (song == "sonic" || song == "green")
+      bg.play("idle");
     const fg = add([
       sprite(song + "FG0"),
       song == "faith" ? layer("bg") : layer("fg"),
@@ -3238,13 +3569,13 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         every("note", (j) => {
           j.pos.x = lerp(width(), strumLine, (underlay.time() - j.created) / chart[0]);
           if (autoplay) {
-            if (j.pos.x <= strumLine) {
+            if (j.pos.x <= strumLine && !j.empty) {
               play(hitsound);
               player.play("talk");
               destroy(j);
             }
           } else {
-            if (j.pos.x <= strumLine - 20) {
+            if (j.pos.x <= strumLine - 20 && !j.empty) {
               score -= 200;
               destroy(j);
               play("explode");
@@ -3252,6 +3583,12 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
               shake(5);
               combo = 0;
               health -= 0.1;
+            }
+          }
+          if (j.pos.x >= strumLine - 20 && j.empty) {
+            if (j.pos.x <= strumLine) {
+              destroy(j);
+              player2 == null ? void 0 : player2.play("talk");
             }
           }
         });
@@ -3382,6 +3719,45 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
             }
           ]);
           break;
+        case "T":
+          add([
+            rect(0, 50),
+            pos(width(), 20),
+            "note" + prevStep,
+            "note",
+            "empty",
+            {
+              created: underlay.time(),
+              empty: true,
+              type: chart[2][Math.floor(prevStep)]
+            }
+          ]);
+          break;
+        case "D":
+          add([
+            rect(10, 50),
+            pos(width(), 20),
+            chart[2][Math.floor(prevStep)] == "F" ? color(168, 56, 50) : color(232, 3, 252),
+            "note" + prevStep,
+            "note",
+            {
+              created: underlay.time(),
+              type: chart[2][Math.floor(prevStep)]
+            }
+          ]);
+          add([
+            rect(0, 50),
+            pos(width(), 20),
+            "note" + prevStep,
+            "note",
+            "empty",
+            {
+              created: underlay.time(),
+              empty: true,
+              type: chart[2][Math.floor(prevStep)]
+            }
+          ]);
+          break;
       }
     }
     __name(makeNote, "makeNote");
@@ -3389,30 +3765,59 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       var iv = false;
       every("note", (j) => {
         if (!iv) {
-          if (j.pos.x >= strumLine - 20) {
-            if (j.pos.x <= strumLine + 22) {
-              iv = true;
-              destroy(j);
-              noteClick.play("click");
-              combo += 1;
+          if (!j.empty) {
+            var str = "No Rating";
+            var theColor = WHITE;
+            if (j.pos.x >= strumLine - 20) {
+              if (j.pos.x <= strumLine + 22) {
+                iv = true;
+                destroy(j);
+                noteClick.play("click");
+                combo += 1;
+                str = "MID";
+                theColor = RED;
+              }
+              if (j.pos.x <= strumLine + 12) {
+                play(hitsound);
+                player.play("talk");
+                score += 20;
+                health += 0.01;
+                str = "Perfect!";
+                theColor = MAGENTA;
+              }
+              if (j.pos.x <= strumLine) {
+                score += 50;
+                health += 0.02;
+                str = "Marvelous!";
+                theColor = YELLOW;
+              }
+              if (j.pos.x <= strumLine - 3) {
+                score += 50;
+                health -= 0.01;
+                str = "Perfect!";
+                theColor = MAGENTA;
+              }
+              if (j.pos.x <= strumLine - 8) {
+                score -= 100;
+                health -= 0.02;
+                str = "Overshot";
+                theColor = CYAN;
+              }
             }
-            if (j.pos.x <= strumLine + 12) {
-              play(hitsound);
-              player.play("talk");
-              score += 20;
-              health += 0.01;
-            }
-            if (j.pos.x <= strumLine) {
-              score += 50;
-              health += 0.02;
-            }
-            if (j.pos.x <= strumLine - 3) {
-              score += 50;
-              health -= 0.01;
-            }
-            if (j.pos.x <= strumLine - 8) {
-              score -= 100;
-              health -= 0.02;
+            if (str != "No Rating") {
+              var origpos = strumLine - 16;
+              var ratingtxt = add([
+                text(str, {
+                  size: 30
+                }),
+                pos(origpos, 48),
+                color(theColor),
+                origin("right")
+              ]);
+              tween(ratingtxt.pos, ["y"], 5, 48, 300, easings.easeOutSine, tweentypes.NORMAL);
+              tween(ratingtxt, ["opacity"], 5, 1, 0, easings.easeOutSine, tweentypes.NORMAL, function() {
+                destroy(ratingtxt);
+              });
             }
           }
         }
@@ -3431,7 +3836,15 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   scene("Help", () => {
     var songs = [
       "tutorial",
-      "faith"
+      "faith",
+      "green",
+      "sonic"
+    ];
+    var names = [
+      "Tutorial",
+      "Friendly Faith Plate",
+      "Green Hill Zone",
+      "Emerald Hill Zone"
     ];
     var chars = {
       tutorial: [
@@ -3443,6 +3856,12 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       ],
       faith: [
         "FaithPlate"
+      ],
+      green: [
+        "SonicAndTails"
+      ],
+      sonic: [
+        "SonicAndTails"
       ]
     };
     const bg = add([
@@ -3494,7 +3913,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         origin: "top"
       });
       drawText({
-        text: "SONG (" + (songIdx + 1) + "/" + songs.length + "): " + songs[songIdx].toUpperCase(),
+        text: "SONG (" + (songIdx + 1) + "/" + songs.length + "): " + names[songIdx].toUpperCase(),
         size: 30,
         pos: vec2(width() / 2, 160),
         origin: "top"
@@ -3577,10 +3996,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       changeIdx(1);
     });
     onKeyPress("down", () => {
-      changeSongIdx(-1);
+      changeSongIdx(1);
     });
     onKeyPress("up", () => {
-      changeSongIdx(1);
+      changeSongIdx(-1);
     });
     onKeyPress("`", () => {
       go("Chart", songs[songIdx]);
@@ -3592,16 +4011,16 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       changeIdx(1);
     });
     onClick("DownText", () => {
-      changeSongIdx(-1);
+      changeSongIdx(1);
     });
     onClick("UpText", () => {
-      changeSongIdx(1);
+      changeSongIdx(-1);
     });
     onKeyPress("space", () => {
       go("Game", [songs[songIdx], chars[songs[songIdx]][idx]]);
     });
     onClick("TEXT TEXT", () => {
-      go("Game", ["tutorial", chars[songs[songIdx]][idx]]);
+      go("Game", [songs[songIdx], chars[songs[songIdx]][idx]]);
     });
   });
   scene("Title", () => {
@@ -3727,9 +4146,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     ]);
     var theP = add([
       pos(width() * 0.6, height() * 0.8),
-      rect(60, 60),
+      rect(60, 30),
       text("P", {
-        size: 48,
+        size: 24,
         width: 60
       }),
       color(255, 255, 255),
@@ -3737,6 +4156,19 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       origin("center"),
       area(),
       "theP"
+    ]);
+    var theD = add([
+      pos(width() * 0.6, height() * 0.8 + 30),
+      rect(60, 30),
+      text("D", {
+        size: 24,
+        width: 60
+      }),
+      color(255, 255, 255),
+      outline(4, WHITE),
+      origin("center"),
+      area(),
+      "theD"
     ]);
     var consoleButton = add([
       pos(width() * 0.8, height() * 0.8),
@@ -3758,6 +4190,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     });
     onClick("theP", (o) => {
       tool = "P";
+    });
+    onClick("theD", (o) => {
+      tool = "D";
     });
     onClick("consoleButton", (o) => {
       console.log(tempChart.join(""));
