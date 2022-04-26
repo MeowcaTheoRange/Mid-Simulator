@@ -1,2 +1,2 @@
 language = "kaboom"
-entrypoint = "code/game.js"
+entrypoint = "code/main.js"

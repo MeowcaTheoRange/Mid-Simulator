@@ -1,4 +1,6 @@
+"use strict";
 import { kaboom, easings, tween, tweentypes } from "../deps.js";
+import { charts } from "./charts.js";
 
 // initialize context
 kaboom({
@@ -7,16 +9,17 @@ kaboom({
 	background: [ 0, 0, 0 ],
 	crisp: true,
 	touchToMouse: true,
-	canvas: document.querySelector("#kaboom")
+	canvas: document.querySelector("#kaboom"),
+	font: "MidSim",
+	scale: 1,
+
 });
+var ismobile = isTouch();
 
 load(new Promise((resolve, reject) => {
 	loadFont("unscii", "sprites/unscii_8x8.png", 8, 8, {chars: " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"});
+	loadFont("MidSim", "sprites/MidSimFont2.png", 10, 10, {chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz:;><^%-.!?/()[]\"'|1234567890"});
 	// Music
-	loadSound("tutorial", "sounds/Getting it Done.mp3"); //135
-	loadSound("faith", "sounds/The Friendly Faith Plate.mp3"); //120
-	loadSound("sonic", "sounds/SonicInMidSim.wav"); //139
-	loadSound("green", "sounds/GreenHill.wav"); //139
 	loadSound("gameover", "sounds/gameover.mp3");
 	// 
 	
@@ -32,9 +35,6 @@ load(new Promise((resolve, reject) => {
 	loadSprite("jellybeanTitle", "sprites/jellybeanTitle.png");
 	loadSprite("logo", "sprites/logo.png");
 	loadSprite("jellybeanFail", "sprites/jellybeanFail.png");
-	loadSprite("keyA", "sprites/keyA.png");
-	loadSprite("keySpace", "sprites/keySpace.png");
-	loadSprite("keyClick", "sprites/keyClick.png");
 	// 
 	
 	// Main Game
@@ -54,342 +54,22 @@ load(new Promise((resolve, reject) => {
 	        }
 	    },
 	})
-	// 
-	
-	// Character
-	loadSound("hitsoundFaithPlate", "sounds/hitsoundFaithPlate.mp3");
-	loadSound("hitsoundJellyBean", "sounds/hitsoundJellyBean.wav");
-	loadSound("hitsoundCarterRedacted", "sounds/hitsoundJellyBean.wav");
-	loadSound("hitsoundMarc", "sounds/hitsoundJellyBean.wav");
-	loadSound("hitsoundRedVelvety", "sounds/hitsoundRedVelvety.wav");
-	loadSound("hitsoundSonicAndTails", "sounds/hitsoundJellyBean.wav");
-	loadSound("hitsoundMarkyMark", "sounds/burp.mp3");
-	loadSprite("JellyBeanPre", "sprites/previews/JellyBeanPre.png");
-	loadSprite("RedVelvetyPre", "sprites/previews/RedVelvetyPre.png");
-	loadSprite("MarkyMarkPre", "sprites/previews/MarkyMarkPre.png");
-	loadSprite("CarterRedactedPre", "sprites/previews/CarterRedactedPre.png");
-	loadSprite("MarcPre", "sprites/previews/MarcPre.png");
-	loadSprite("FaithPlatePre", "sprites/previews/FaithPlatePre.png");
-	loadSprite("SonicAndTailsPre", "sprites/previews/SonicAndTailsPre.png");
-	// 
-	
-	// Cake/tutorial
-	loadSprite("tutorialBG0", "sprites/bgCake.png");
-	loadSprite("tutorialFG0", "sprites/fgCake0.png");
-	loadSprite("tutorialFG1", "sprites/fgCake1.png");
-	loadSprite("Marctutorial", "sprites/marcCake.png", {
-	    sliceX: 3,
-	    sliceY: 3,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 3,
-							speed: 20
-	        },
-	        talk: {
-	            from: 4,
-	            to: 5,
-							speed: 20
-	        },
-	        miss: {
-	            from: 6,
-	            to: 8,
-							speed: 10
-	        },
-	    },
-	})
-	loadSprite("CarterRedactedtutorial", "sprites/carterredactedCake.png", {
-	    sliceX: 3,
-	    sliceY: 3,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 3,
-							speed: 20
-	        },
-	        talk: {
-	            from: 4,
-	            to: 5,
-							speed: 20
-	        },
-	        miss: {
-	            from: 6,
-	            to: 8,
-							speed: 10
-	        },
-	    },
-	})
-	loadSprite("MarkyMarktutorial", "sprites/markymarkCake.png", {
-	    sliceX: 3,
-	    sliceY: 4,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 3,
-							speed: 20
-	        },
-	        talk: {
-	            from: 4,
-	            to: 7,
-							speed: 40
-	        },
-	        miss: {
-	            from: 8,
-	            to: 10,
-							speed: 10
-	        },
-	    },
-	})
-	loadSprite("RedVelvetytutorial", "sprites/redvelvetyCake.png", {
-	    sliceX: 3,
-	    sliceY: 4,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 3,
-							speed: 20
-	        },
-	        talk: {
-	            from: 4,
-	            to: 5,
-							speed: 20
-	        },
-	        dox: {
-	            from: 6,
-	            to: 7,
-							speed: 20
-	        },
-	        miss: {
-	            from: 8,
-	            to: 10,
-							speed: 10
-	        },
-	    },
-	})
-	loadSprite("JellyBeantutorial", "sprites/jellybeanCake.png", {
-	    sliceX: 3,
-	    sliceY: 4,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 3,
-							speed: 20
-	        },
-	        talk: {
-	            from: 4,
- 		           to: 5,
-							speed: 20
-	        },
-	        dox: {
-            	from: 6,
-          	  to: 7,
-							speed: 20
-      	  },
-    	    miss: {
-  	          from: 8,
-	            to: 10,
-							speed: 10
- 	 	      },
-	    },
-	})
-	// 
 
-	// Faith/faith
-	loadSprite("faithBG0", "sprites/bgFaith.png");
-	loadSprite("faithFG0", "sprites/fgFaith.png");
-	loadSprite("FaithPlatefaith", "sprites/faithplateFaith.png", {
-	    sliceX: 3,
-	    sliceY: 3,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 3,
-							speed: 20
-	        },
-	        talk: {
-	            from: 4,
-	            to: 5,
-							speed: 20
-	        },
-	        miss: {
-	            from: 6,
-	            to: 8,
-							speed: 10
-	        },
-	    },
-	})
-	// 
-
-	// Sonic In Mid Sim/sonic
-	loadSprite("sonicBG0", "sprites/SonicBG.png", {
-	    sliceX: 3,
-	    sliceY: 3,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 6,
-							speed: 10,
-							loop: true
-	        }
-	    },
-	});
-	loadSprite("sonicFG0", "sprites/SonicFG.png", {
-	    sliceX: 3,
-	    sliceY: 3,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 0,
-							speed: 20
-	        }
-	    },
-	});
-	loadSprite("SonicAndTailssonic0", "sprites/SonicMidSim.png", {
-	    sliceX: 3,
-	    sliceY: 4,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 6,
-							speed: 20
-	        },
-	        talk: {
-	            from: 7,
-	            to: 8,
-							speed: 20
-	        },
-	        miss: {
-	            from: 9,
-	            to: 11,
-							speed: 10
-	        },
-	    },
-	});
-	loadSprite("SonicAndTailssonic1", "sprites/TailsMidSim.png", {
-	    sliceX: 3,
-	    sliceY: 9,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 15,
-							speed: 20
-	        },
-	        talk: {
-	            from: 16,
-	            to: 23,
-							speed: 20
-	        },
-	        miss: {
-	            from: 24,
-	            to: 26,
-							speed: 10
-	        },
-	    },
-	});
-	loadSprite("greenBG0", "sprites/SonicBG.png", {
-	    sliceX: 3,
-	    sliceY: 3,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 6,
-							speed: 10,
-							loop: true
-	        }
-	    },
-	});
-	loadSprite("greenFG0", "sprites/SonicFG.png", {
-	    sliceX: 3,
-	    sliceY: 3,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 0,
-							speed: 20
-	        }
-	    },
-	});
-	loadSprite("SonicAndTailsgreen0", "sprites/SonicMidSim.png", {
-	    sliceX: 3,
-	    sliceY: 4,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 6,
-							speed: 20
-	        },
-	        talk: {
-	            from: 7,
-	            to: 8,
-							speed: 20
-	        },
-	        miss: {
-	            from: 9,
-	            to: 11,
-							speed: 10
-	        },
-	    },
-	});
-	loadSprite("SonicAndTailsgreen1", "sprites/TailsMidSim.png", {
-	    sliceX: 3,
-	    sliceY: 9,
-	    anims: {
-	        idle: {
-	            from: 0,
-	            to: 15,
-							speed: 20
-	        },
-	        talk: {
-	            from: 16,
-	            to: 23,
-							speed: 20
-	        },
-	        miss: {
-	            from: 24,
-	            to: 26,
-							speed: 10
-	        },
-	    },
-	});
+	for (let ided in charts) {
+		console.log("Loading game assets...");
+		charts[ided].events.preload();
+		console.log("Assets of song " + charts[ided].name + " loaded.");
+	}
 	
 	resolve("All assets loaded.");
-}))
+}));
 
-var charts = {
-	"tutorial": [
-		5, // How much seconds it takes to get from Right Stage to the hitmarker
-		135, // Song BPM
-		"................................................................................................................................J...........J.J...........J.J.J.............J.J.................J...........J.J...........J.J...J...............................J...........J.J...........J.J.J.............J.J...J.............J...........J.J...........J.J...J...............................J...........J.J...........J.J.J.............J.J...J.............J...........J.J...........J.J...J...............................J...........J.J...........J.J.J.............J.J...J...J...J.J...J...........J.J...........J.J...J...............................J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J...................................J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.....J.............................J.J.J.J.J.J.J.J.J.J.J.J.J.J.J...................................J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.....J.J.....J.J.....J...........J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.................................J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.....J.J.....J.J.....J.J.....J...................................................................................................................................J...........J.J...........J.J.J.............J.J...J...J...J.J...J...........J.J...........J.J...J...............................J...........J.J...........J.J.J.............J.J...J...J...J.J...J...........J.J...........J.J...J...............................J...........J.J...........J.J.J.............J.J...J...J...J.J...J...........J.J...........J.J...J...............................J...........J.J...........J.J.J.............J.J...J...J...J.J...J...........J.J...........J.J...J...............................................................................................................................................................................................................................................................",
-		1 //Texture Scale (too lazy to upsize sprites sometimes)
-	],
-	"faith": [
-		2, 
-		120, 
-		"................................................................................................................................J...J...J...JJJJJ...J...J...J...J.J.J.J.J.J.J.J.JJJJJJJJJ.J.J.JJJ.J.J.J.J.J.JJJJJ.JJJ.J.J.J.J.J.J.JJJ.JJJ.J.J.J.JJJJJJJJJJJJJJJJJ.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.JJJ.JJJ.JJJ.JJJ.JJJ.J.J.J.J.JJJ.J.JJJJJJJJJJJJJ.J.J.J.JJJJJ.J.J.J.J.J.J.J.JJJJJ.J.J.J.J.JJ.J..J.JJJ.JJJ.J.J.JJJ.JJJ.J.J.J.JJJJJ.J.J.JJJ.JJJJJJJJJJJJJJJJJ.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.JJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.J.J.JJJ.J.J.JJJ.J.J.J.J.J.J.JJJ.JJJJ.JJ.J.J.J.JJ..J...J.J.J.J.J.J.JJJJJJJJJJJJJ.J.J.J.J.J.J.J.J.J.JJJJJ.J.J.J.J.J.J.J.J...J...J.J.J.J.JJJJJJJJJ.J.J.J.J.J.J.JJJ.J.JJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.J.J.JJJJ.JJJJJJJJJJJJJJJ.JJJJJJJJJJJJJ..J.JJJ.JJJJJJJJJJ....J.J.JJJJJJJ.J.JJJ.JJJJJJJJJJJJJJJJJJJJJ.J.J.J.JJJ.JJJJJJJJJ....JJJJJJJJJ....JJJJJJJ.JJJJJJJ..JJJ..J.JJJJJJJJJJJJJJJ.JJJJJJJ..JJJ....JJJJJJJJJJJJJJJ.JJJJJJJ..JJJ....JJJJJJJJJJJJJJJ.JJJJJJJJ.JJJ..J.JJJJJJJ.J.JJJ.JJJJJJJJJJJJJ.JJJ.J...JJJ.J.JJJ.JJJJJJJJJJJJJ.JJJ.JJJ.JJJ.J.JJJJJJJJJJJJJJJJJJJJJ.JJJ.JJJ.J.JJJ.JJJJJJJJJJJJJJJJJ.JJJ.JJJ.J.JJJ.JJJJJJJJJJJJJJJ...JJJJ........J...JJJJ........J...JJJJ........J...JJJJ........J.J.JJJJ........JJJ.JJJ.JJJ.J.JJJ.J.JJJJ........JJJ.JJJ.JJJ.JJJJJ.J.JJJJ........JJJ.JJJ.JJJ.J.JJJ.J.JJJJ........JJJ.JJJ.JJJ.JJJJJ.J.JJJJJ.......JJJ.J.............",
-		4
-	],
-	"sonic": [
-		2, 
-		139, 
-		"..................................................J.J.J.J.J.JJ....J.J.J.J..J........JJJJ..J.JJ.J..................T.T.T.T.T.TT....T...T.T..T........TTT.T.T.TT.T..................J.J.J.J.J.J.J.J.J...J...........J.J.J.J.J.JJ..J.................T.T.T.T.T.T.T.T.T...T...........T.T.T.T.T.TT..T...............J.....J.....J.J.J.JJ....T.TT........J.J.J.J.J.J.J.J...J.........T.....T.....T.T.T.TT....J.JJ....DD.D.............................................................",
-		1
-	],
-	"green": [
-		2, 
-		150, 
-		"................J.....J.....J.....J.....J...J...J.....J.....J...................J.....J.....J...J.....J.....J...J.....J.................................T.T...T.T...T.T...T...........T.T.T...T.T...T.T...T.............T.T...T.T...T.T...T...........T.T.T...T.T...T.T...T.....T.......J.J...J.J...D.J.T.J.T...T.....J.J.J...J.J...D.J.T.J.T...T.......J.J...J.J...D.J.T.J.T...T.....J.J.J...J.J...D.J.T.J.D...D.....J.....J.....J.....J.T.D.T.J.....J.....J.....J.....J.T.D.T.J.....J.....J.....J.....J.T.D.T.J.T.T.T...T.T.T...T.T.T.T.T.T.T.........J.J...J.J...J.J...J...........J.J.J...J.J...J.J...J.............J.J...J.J...J.J...J...........J.J.J...J.J...J.J...J.....J.......T.T...T.T...D.T.J.T.J...J.....T.T.T...T.T...D.T.J.T.J...J.......T.T...T.T...D.T.J.T.J...J.....T.T.T...T.T...D.T.J.T.J.T.D.....T.....T.....T.....T.J.D.J.T.....T.....T.....T.....T.J.D.J.T.....T.....T.....T.....T.J.D.J.T.J.J.J...J.J.J...J.J.J.J.J.J.J................................................................................................................................................................",
-		1
-	]
-};
-var songIdx = 0;
-var idx = 0;
-
-scene("Game", (arr) => {
-	var song = arr[0]; //Also Chart access
-	var char = arr[1];
-	var hitsound = "hitsound" + arr[1];
-	var chart = charts[song];
-	var crochet = ((60 / chart[1]) * 1000);
+scene("Game", (idx, noTrans) => {
+	var song = charts[idx.song].id; //Also Chart access
+	var char = charts[idx.song].characters[idx.character][0];
+	var hitsound = "hitsound" + charts[idx.song].characters[idx.character][0];
+	var chart = charts[idx.song].chart;
+	var crochet = ((60 / charts[idx.song].bpm) * 1000);
 	var board = width() - strumLine;
 	var curBeat;
 	var prevBeat;
@@ -400,12 +80,14 @@ scene("Game", (arr) => {
 	var score = 0;
 	var combo = 0;
 	var health = 1;
-	var font = "apl386o";
+	var font = "MidSim";
 	if (char == "MarkyMark") {
 		font = "unscii";
 	}
+
+	// Music
 	var strumLine = width() / 2;
-	const music = play(song, {
+	const music = play(charts[idx.song].id, {
 	    volume: 1,
 	    loop: false
 	});
@@ -414,11 +96,13 @@ scene("Game", (arr) => {
 	    loop: false
 	});
 	music.pause()
-	wait(chart[0], () => {
+	wait(charts[idx.song].speed, () => {
 		underlay.pause();
 		music.play();
-		underlay.play(music.time() + chart[0]);
+		underlay.play(music.time() + charts[idx.song].speed);
 	});
+
+	// Sprites
 	layers([
     "bg",
 		"JELLYBEAN",
@@ -427,59 +111,94 @@ scene("Game", (arr) => {
     "ui0",
 		"ui1"
 	], "ui0");
-	var player;
-	var player2;
-	if (song == "sonic" || song == "green") {
-		player = add([
-	    sprite(char + song + "0"),
-			layer("JELLYBEAN"),
-			"dances",
-			pos(20, 108),
-			scale(chart[3])
-		])
-		player2 = add([
-	    sprite(char + song + "1"),
-			layer("JELLYBEAN"),
-			"dances",
-			pos(224, 20),
-			scale(chart[3])
-		])
-	} else {
-		player = add([
+	var players = {
+		main: 0,
+		empty: 0,
+	};
+	var bg;
+	var tweenVals = {
+		fade: 1,
+		triggered: false
+	}
+	tween(tweenVals, ["fade"], 1, 1, 0, easings.easeOutCirc, tweentypes.NORMAL);
+	if (!charts[idx.song].makeScript.customChar) {
+		players.main = add([
 	    sprite(char + song),
 			layer("JELLYBEAN"),
 			"dances",
 			(song == "faith" ? pos(0, 0) : pos((width() / 2) - 162, height() - 400)),
-			scale(chart[3])
-		])
+			scale(charts[idx.song].scale)
+		]);
+	} 
+	if (!charts[idx.song].makeScript.customBG) {
+		bg = add([
+			sprite(song + "BG0"),
+			layer("bg"),
+			scale(charts[idx.song].scale)
+		]);
+		const fg = add([
+			sprite(song + "FG0"),
+			(song == "faith" ? layer("bg") : layer("fg")),
+			scale(charts[idx.song].scale)
+		]);
 	}
-	const bg = add([
-		sprite(song + "BG0"),
-		layer("bg"),
-		scale(chart[3])
-	])
-	if(song == "sonic" || song == "green") bg.play("idle");
-	const fg = add([
-		sprite(song + "FG0"),
-		(song == "faith" ? layer("bg") : layer("fg")),
-		scale(chart[3])
-	])
-	if (song == "tutorial") {
-	const fg = add([
-		sprite(song + "FG1"),
-		layer("fg"),
-		scale(chart[3])
-	]);
+	var script = charts[idx.song].makeScript.script(players, char, bg);
+	if (script.returnType != undefined && script.returnType == "character") {
+		players.main = script.main;
+		players.empty = script.empty;
 	}
 	const noteClick = add([
 		sprite("noteClick"),
 		scale(0.25),
 		pos(strumLine, 15)
 	])
+	const bspButton = add([
+    pos(0, 0),
+		color(CYAN),
+    text(ismobile ? "<" : "BACKSPACE TO EXIT", {
+        size: ismobile? 32 : 20, // 48 pixels tall
+    }),
+		area({
+			offset: ismobile ? vec2(canvas.offsetLeft, canvas.offsetTop) : vec2(0, 0),
+		}),
+		"back"
+	])
+	const entButton = add([
+    pos(width(), 0),
+		origin("topright"),
+		color(YELLOW),
+    text(ismobile ? "||" : "ENTER TO PAUSE", {
+        size: ismobile? 32 : 20, // 48 pixels tall
+    }),
+		area({
+			offset: ismobile ? vec2(canvas.offsetLeft, canvas.offsetTop) : vec2(0, 0),
+		}),
+		"ent"
+	])
+	// Gameplay
 	onUpdate(() => {
 		if (health > 1) health = 1;
-		if (health < 0) {health = 0;go("Lose", score, arr);music.stop();}
-		if (music.time() > music.duration() && health >= 0) {go("Title");}
+		if (health < 0) {
+			health = 0;
+			if(!tweenVals.triggered) {
+				tween(tweenVals, ["fade"], 1, 0, 1, easings.easeOutCirc, tweentypes.NORMAL, function () {
+					underlay.stop();
+					music.stop();
+					go("Lose", score, idx);
+				});
+				underlay.pause();
+				music.pause();
+				tweenVals.triggered = true;
+			}
+		}
+		if (music.time() > music.duration() && health >= 0) {
+			if(!tweenVals.triggered) {
+				tween(tweenVals, ["fade"], 1, 0, 1, easings.easeOutCirc, tweentypes.NORMAL, function () {
+					go("Help");
+				});
+				tweenVals.triggered = true;
+			}
+		}
 		strumLine = lerp(18, width() / 2, health);
 		noteClick.pos.x = strumLine - 5;
 		curBeat = Math.floor(((music.time() * 1000) / crochet) * 10) / 10;
@@ -500,23 +219,26 @@ scene("Game", (arr) => {
 			]);
 		}
 		if (!get("note" + prevStep).length) {
-			makeNote(chart[2][Math.floor(prevStep)]);
+			makeNote(charts[idx.song].chart[Math.floor(prevStep)]);
 		}
 		if (!underlay.isPaused()) {
 			every("bar", (j) => {
-				j.pos.x = lerp(width(), strumLine, (underlay.time() - j.created) / chart[0]);
+				j.pos.x = lerp(width(), strumLine, (underlay.time() - j.created) / charts[idx.song].speed);
 				if(j.pos.x <= strumLine) {
 					beatHit();
 					if (debugMode) play("metro", {detune: j.mainBar ? 200 : 0});
 					destroy(j);
 				}
+				if (charts[idx.song].events.onBeat != undefined) {
+					charts[idx.song].events.onBeat(curBeat);
+				}
 			});
 			every("note", (j) => {
-				j.pos.x = lerp(width(), strumLine, (underlay.time() - j.created) / chart[0]);
+				j.pos.x = lerp(width(), strumLine, (underlay.time() - j.created) / charts[idx.song].speed);
 				if(autoplay) {
 					if(j.pos.x <= strumLine && !j.empty) {
 						play(hitsound);
-					  player.play("talk");
+					  players.main.play("talk"); //Check this area later, you want to add in Note Modularity!
 						destroy(j);
 					}
 				} else {
@@ -524,17 +246,18 @@ scene("Game", (arr) => {
 						score -= 200;
 						destroy(j);
 						play("explode");
-						player.play("miss");
+						players.main.play("miss");
 						shake(5);
 						combo = 0;
 						health -= 0.1;
 					}
 				}
-				if(j.pos.x >= strumLine - 20 && j.empty) {
-					if(j.pos.x <= strumLine) {
-						destroy(j); //Destroys note. No score.
-						player2?.play("talk");
+				if(j.pos.x <= strumLine && j.empty) {
+					if (!j.normal) {
+						j.function();
 					}
+					destroy(j);
+					players.empty?.play("talk");
 				}
 			});
 		}
@@ -552,14 +275,36 @@ scene("Game", (arr) => {
 	});
 	onKeyPress("space", () => {judgeHitsLol()});
 	onKeyPress("backspace", () => {
-		underlay.stop();
-		music.stop();
-		go("Help")
+		tween(tweenVals, ["fade"], 1, 0, 1, easings.easeOutCirc, tweentypes.NORMAL, function () {
+				underlay.stop();
+				music.stop();
+				go("Help");
+		});
+		underlay.pause();
+		music.pause();
 	});
 	onKeyPress("a", () => {autoplay = !autoplay});
 	onKeyPress("d", () => {debugMode = !debugMode});
+	onClick("back", () => {
+		tween(tweenVals, ["fade"], 1, 0, 1, easings.easeOutCirc, tweentypes.NORMAL, function () {
+				underlay.stop();
+				music.stop();
+				go("Help");
+		});
+		underlay.pause();
+		music.pause();
+	});
+	onClick("ent", () => {
+		if (!underlay.isPaused()) {
+			underlay.pause();
+			music.pause();
+			mt = [underlay.time(), music.time()];
+		} else {
+			underlay.play(mt[0]);
+			music.play(mt[1]);
+		}
+	});
 	onClick(() => {judgeHitsLol()});
-	onTouchStart(() => {judgeHitsLol()});
 	onDraw(() => {
 		drawLine({
     	p1: vec2(0, 20),
@@ -580,9 +325,9 @@ scene("Game", (arr) => {
 	    color: rgb(255, 255, 255),
 		})
     drawText({
-  	  text: "MID-SIMULATOR DEMO -- WORK IN PROGRESS!",
+  	  text: "MID-SIMULATOR DEMO",
     	size: 20,
-  	  pos: vec2(0, 0),
+  	  pos: vec2(0, height() - 20),
 			font: font
 		});
 		if (debugMode) {
@@ -599,19 +344,19 @@ scene("Game", (arr) => {
 			font: font
 		});
     drawText({
-  	  text: prevStep + "/" + (chart[2].length - 1),
+  	  text: prevStep + "/" + (charts[idx.song].chart.length - 1),
     	size: 20,
   	  pos: vec2(0, 60),
 			font: font
 		});
     drawText({
-  	  text: (chart[2][Math.floor(prevStep)] ? chart[2][Math.floor(prevStep)] : "."),
+  	  text: (charts[idx.song].chart[Math.floor(prevStep)] ? charts[idx.song].chart[Math.floor(prevStep)] : "."),
     	size: 20,
   	  pos: vec2(0, 80),
 			font: font
 		});
     drawText({
-  	  text: (chart[2][Math.floor(curStep)] ? chart[2][Math.floor(curStep)] : "."),
+  	  text: (charts[idx.song].chart[Math.floor(curStep)] ? charts[idx.song].chart[Math.floor(curStep)] : "."),
     	size: 20,
   	  pos: vec2(0, 100),
 			font: font
@@ -639,65 +384,24 @@ scene("Game", (arr) => {
 			drawText({
 	  	  text: "AUTOPLAY",
 	    	size: 20,
-  		  pos: vec2(strumLine, 120),
+  		  pos: vec2(strumLine, debugMode? 140: 120),
 				font: font
 			});
 		}
+		drawRect({
+			width: 702,
+			height: 402,
+			pos: vec2(-1, -1),
+			color: BLACK,
+			opacity: tweenVals.fade
+		})
 	})
+
+	//Functions
+	
 	function makeNote(letter) {
-		switch (letter) {
-			case "J":
-				add([
-						rect(10, 50),
-						pos(width(), 20),
-						chart[2][Math.floor(prevStep)] == "F" ? color(168, 56, 50) : color(232, 3, 252),
-						("note" + prevStep),
-						"note",
-						{
-							created: underlay.time(),
-							type: chart[2][Math.floor(prevStep)]
-						}
-				]);
-				break;
-			case "T":
-				add([
-						rect(0, 50),
-						pos(width(), 20),
-						("note" + prevStep),
-						"note",
-						"empty",
-						{
-							created: underlay.time(),
-							empty: true,
-							type: chart[2][Math.floor(prevStep)]
-						}
-				]);
-				break;
-			case "D":
-				add([
-						rect(10, 50),
-						pos(width(), 20),
-						chart[2][Math.floor(prevStep)] == "F" ? color(168, 56, 50) : color(232, 3, 252),
-						("note" + prevStep),
-						"note",
-						{
-							created: underlay.time(),
-							type: chart[2][Math.floor(prevStep)]
-						}
-				]);
-				add([
-						rect(0, 50),
-						pos(width(), 20),
-						("note" + prevStep),
-						"note",
-						"empty",
-						{
-							created: underlay.time(),
-							empty: true,
-							type: chart[2][Math.floor(prevStep)]
-						}
-				]);
-				break;
+		if (charts[idx.song].noteTypes.hasOwnProperty(letter)) {
+			charts[idx.song].noteTypes[letter](underlay.time(), letter, prevStep, char);
 		}
 	}
 	function judgeHitsLol() {
@@ -712,6 +416,9 @@ scene("Game", (arr) => {
 						if(j.pos.x <= strumLine + 22) {
 							hits++;
 							iv = true;
+							if (!j.normal) {
+								j.function();
+							}
 							destroy(j); //Destroys note. No score.
 							noteClick.play("click");
 							combo += 1;
@@ -720,7 +427,7 @@ scene("Game", (arr) => {
 						}
 						if(j.pos.x <= strumLine + 12) {
 							play(hitsound); //Plays sound!
-							player.play("talk");
+							players.main.play("talk");
 							score += 20;
 							health += 0.01;
 							str = "Perfect!";
@@ -767,179 +474,175 @@ scene("Game", (arr) => {
 	}
 	function beatHit() {
 		every("dances", (obj) => {
-			if (player.curAnim() != "talk" && player.curAnim() != "miss") {
+			if (obj.curAnim() != "talk" && obj.curAnim() != "miss") {
 				obj.play("idle");
 			}	
 		});
 	}
 });
 
-scene("Help", () => {
-	var songs = [
-		"tutorial",
-		"faith",
-		"green",
-		"sonic"
-	];
-	var names = [
-		"Tutorial",
-		"Friendly Faith Plate",
-		"Green Hill Zone",
-		"Emerald Hill Zone"
-	]
-	var chars = {
-		tutorial: [
-			"JellyBean",
-			"RedVelvety",
-			"Marc",
-			"CarterRedacted",
-			"MarkyMark"
-		],
-		faith: [
-			"FaithPlate"
-		],
-		green: [
-			"SonicAndTails"
-		],
-		sonic: [
-			"SonicAndTails"
-		]
+scene("Help", (noTrans) => {
+	var index = {
+		character: 0,
+		song: 0
 	}
+	var tweenVals = {
+		fade: 0
+	}
+	if (!noTrans) tween(tweenVals, ["fade"], 1, 1, 0, easings.easeOutCirc, tweentypes.NORMAL);
 	const bg = add([
     sprite("bgCake")
 	]);
 	onDraw(() => {
+		if (!ismobile) {
+			drawText({
+				text: "D: ENABLE DEBUG MODE",
+				size: 30,
+				pos: vec2(25, 25)
+			});
+  	  drawText({
+  		  text: "A: ENABLE AUTOPLAY",
+  	  	size: 30,
+  		  pos: vec2(25, 60)
+			});
+		}
     drawText({
-  	  text: "CONTROLS",
+  	  text: ismobile ? "TAP TO HIT NOTES" : "SPACE/CLICK: HIT NOTE",
     	size: 30,
-  	  pos: vec2(25, 25)
+  	  pos: ismobile ? vec2(25, 60) : vec2(25, 95)
 		});
     drawText({
-  	  text: ": ENABLE AUTOPLAY - ENTER TO PAUSE",
-    	size: 30,
-  	  pos: vec2(60, 60)
-		});
-    drawText({
-  	  text: "  /  : HIT NOTE",
-    	size: 30,
-  	  pos: vec2(55, 95)
-		});
-		drawSprite({
-  	  sprite: "keyA",
-			width: 60,
-			height: 60,
-  	  pos: vec2(5, 45)
-		})
-		drawSprite({
-  	  sprite: "keySpace",
-			width: 60,
-			height: 60,
-  	  pos: vec2(20, 80)
-		})
-		drawSprite({
-  	  sprite: "keyClick",
-			width: 60,
-			height: 60,
-  	  pos: vec2(95, 80)
-		})
-    drawText({
-  	  text: "SOUND & SHAKING WARNINGS",
-    	size: 30,
-  	  pos: vec2(width() / 2 - 105, 25)
-		});
-    drawText({
-  	  text: "CHARACTER ("+ (idx + 1) +"/"+ chars[songs[songIdx]].length +"): " + chars[songs[songIdx]][idx],
+  	  text: charts[index.song].characters[index.character][1] + " ("+ (index.character + 1) +"/"+ charts[index.song].characters.length +")",
     	size: 30,
   	  pos: vec2(width() / 2, 200),
 			origin: "top"
 		});
     drawText({
-  	  text: "SONG ("+ (songIdx + 1) +"/"+ songs.length +"): " + names[songIdx].toUpperCase(),
+  	  text: charts[index.song].name,
     	size: 30,
   	  pos: vec2(width() / 2, 160),
 			origin: "top"
 		});
 		drawSprite({
-  	  sprite: chars[songs[songIdx]][idx] + "Pre",
+  	  sprite: charts[index.song].characters[index.character][0] + "Pre",
 			width: 64,
 			height: 64,
   	  pos: vec2((width() / 2) - 34, 248)
 		});
+		drawRect({
+			width: 702,
+			height: 402,
+			pos: vec2(-1, -1),
+			color: BLACK,
+			opacity: tweenVals.fade
+		})
 	})
 	add([
     pos(0, 140),
     rect(700, 200),
 		color(0, 0, 0)
-	])
+	]) 
 	var lt = add([
     pos(10, 200),
     text("<", {
         size: 30
     }),
-		area(),
+		area({
+			height: 30,
+			offset: ismobile ? vec2(canvas.offsetLeft, canvas.offsetTop) : vec2(0, 0),
+			width: 30,
+			cursor: "pointer"
+		}),
 		"LeftText"
 	])
 	var rt = add([
-    pos(width() - 30, 200),
+    pos(width() - 10, 200),
+		origin("topright"),
     text(">", {
         size: 30
     }),
-		area(),
+		area({
+			height: 30,
+			offset: ismobile ? vec2(canvas.offsetLeft, canvas.offsetTop) : vec2(0, 0),
+			width: 30,
+			cursor: "pointer"
+		}),
 		"RightText"
 	])
 	var dt = add([
     pos(10, 160),
-    text("v", {
+    text("%", {
         size: 30
     }),
-		area(),
+		area({
+			height: 30,
+			offset: ismobile ? vec2(canvas.offsetLeft, canvas.offsetTop) : vec2(0, 0),
+			width: 30,
+			cursor: "pointer"
+		}),
 		"DownText"
 	])
 	var ut = add([
-    pos(width() - 30, 160),
+    pos(width() - 10, 160),
+		origin("topright"),
     text("^", {
         size: 30
     }),
-		area(),
+		area({
+			height: 30,
+			offset: ismobile ? vec2(canvas.offsetLeft, canvas.offsetTop) : vec2(0, 0),
+			width: 30,
+			cursor: "pointer"
+		}),
 		"UpText"
 	])
 	var clickText = add([
-    pos(25, height() - 60),
-    text("Press Space or Click Here to start", {
+    pos(width() / 2, height() - 45),
+    text(ismobile ? "TAP HERE TO START" : "SPACE TO START", {
         size: 30
     }),
-		area(),
+		origin("top"),
+		area({
+			height: 30,
+			offset: ismobile ? vec2(canvas.offsetLeft, canvas.offsetTop) : vec2(0, 0),
+			width: 700,
+			cursor: "pointer"
+		}),
 		"TEXT TEXT"
 	])
 	function changeIdx(amt) {
-		idx += amt;
-		if (idx < 0) {
-			idx = chars[songs[songIdx]].length - 1;
-		} else if (idx >= chars[songs[songIdx]].length) {
-			idx = 0;
+		index.character += amt;
+		if (index.character < 0) {
+			index.character = charts[index.song].characters.length - 1;
+		} else if (index.character >= charts[index.song].characters.length) {
+			index.character = 0;
 		}
 	}
 	function changeSongIdx(amt) {
-		songIdx += amt;
-		idx = 0;
-		if (songIdx < 0) {
-			songIdx = songs.length - 1;
-		} else if (songIdx >= songs.length) {
-			songIdx = 0;
+		index.song += amt;
+		index.character = 0;
+		if (index.song < 0) {
+			index.song = charts.length - 1;
+		} else if (index.song >= charts.length) {
+			index.song = 0;
 		}
 	}
 	
 	onKeyPress("left", () => {changeIdx(-1)});
 	onKeyPress("right", () => {changeIdx(1)});
-	onKeyPress("down", () => {changeSongIdx(1)});
-	onKeyPress("up", () => {changeSongIdx(-1)});
-	onKeyPress("`", () => {go("Chart", songs[songIdx])});
-	onClick("LeftText", () => {changeIdx(-1)});
-	onClick("RightText", () => {changeIdx(1)});
-	onClick("DownText", () => {changeSongIdx(1)});
-	onClick("UpText", () => {changeSongIdx(-1)});
-	onKeyPress("space", () => {go("Game", [songs[songIdx], chars[songs[songIdx]][idx]]);/*losemus.stop();*/});
-	onClick("TEXT TEXT", () => {go("Game", [songs[songIdx], chars[songs[songIdx]][idx]]);/*losemus.stop();*/});
+	onKeyPress("down", () => {changeSongIdx(-1)});
+	onKeyPress("up", () => {changeSongIdx(1)});
+	onKeyPress("`", () => {go("Chart", index.song)});
+	lt.onClick(() => {changeIdx(-1)});
+	rt.onClick(() => {changeIdx(1)});
+	dt.onClick(() => {changeSongIdx(-1)});
+	ut.onClick(() => {changeSongIdx(1)});
+	onKeyPress("space", () => {
+		tween(tweenVals, ["fade"], 1, 0, 1, easings.easeOutCirc, tweentypes.NORMAL, function () {
+			go("Game", index);
+		});
+	});
+	clickText.onClick(() => {go("Game", index);/*losemus.stop();*/});
 });
 
 scene("Title", () => {
@@ -957,14 +660,15 @@ scene("Title", () => {
 	]);
 	onDraw(() => {
     drawText({
-  	  text: "SPACE/CLICK TO START",
+  	  text: "SPACE TO START",
     	size: 30,
-  	  pos: vec2(width() / 2 - 90, height() - 60)
+			origin: "top",
+  	  pos: vec2(width() / 2, height() - 45)
 		});
 	})
-	onKeyPress("space", () => {go("Help", ["tutorial"]);/*losemus.stop();*/});
-	onClick(() => {go("Help", ["tutorial"]);/*losemus.stop();*/});
-	onTouchStart(() => {go("Help", ["tutorial"]);/*losemus.stop();*/});
+	onKeyPress("space", () => {go("Help", true);/*losemus.stop();*/});
+	onClick(() => {go("Help", true);/*losemus.stop();*/});
+	onTouchStart(() => {go("Help", true);/*losemus.stop();*/});
 });
 
 scene("Lose", (score, song) => {
@@ -979,12 +683,12 @@ scene("Lose", (score, song) => {
 	});
 	onDraw(() => {
     drawText({
-  	  text: "YOU LOST LOL WHOOPS",
+  	  text: "OUCHIE!",
     	size: 60,
   	  pos: vec2(0, height() - 120)
 		});
     drawText({
-  	  text: "SPACE/CLICK TO RESTART",
+  	  text: ismobile ? "TAP TO RESTART" : "SPACE TO RESTART",
     	size: 30,
   	  pos: vec2(0, height() - 60)
 		});
@@ -998,18 +702,18 @@ scene("Lose", (score, song) => {
 	onClick(() => {go("Game", song);losemus.stop();});
 });
 
-scene("Chart", (song) => {
-	var chart = charts[song];
-	var crochet = ((60 / chart[1]) * 1000);
+scene("Chart", (idx) => {
+	var chart = charts[idx].chart;
+	var crochet = ((60 / charts[idx].bpm) * 1000);
 	var curBeat;
 	var curStep;
 	var songTime = 0;
 	var tool = "J";
-	const music = play(song, {
+	const music = play(charts[idx].id, {
 	    volume: 1,
 	    loop: false
 	});
-	music.pause()
+	music.pause();
 	
 	var lastTargeted = 4;
 	var tempChart = Array.from(Array(Math.floor((music.duration() * 1000) / (crochet / 4))), () => ".");
