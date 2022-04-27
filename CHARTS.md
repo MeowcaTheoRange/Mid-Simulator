@@ -145,6 +145,14 @@ Alright, the `scale` field is just the scale of your sprites. If you have failed
 
 `characters` is a list of all of the playable characters your player will be able to use. Nore really coding-related, but you will need this if you want to give your player some character variety.
 
+The array goes like this: `[ "ID Of Character", "Name Of Character" ]`
+If you're not using custom character definitions (see below), you also have 2 more values to play with:
+`[ "ID", "Name", X Pos, Y Pos ]`. These define the X and Y position the character will be placed at.
+
+```js
+	[ "sonic", "Sonic", 20, 108 ]
+```
+
 `noteTypes` is a list of strings that will define different letters of the chart as notes. 
 
   `noteTypes.[anonymous](time, letter, prevStep)` is a function that's good for defining custom notes.
