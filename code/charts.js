@@ -139,11 +139,11 @@ export var charts = [
 			}
 		},
 		characters: [
-			["JellyBean", "JellyBean"],
-			["RedVelvety", "RedVelvety"],
-			["Marc", "Marc"],
-			["CarterRedacted", "CarterRedacted"],
-			["MarkyMark", "Mark"]
+			["JellyBean", "JellyBean", (width() / 2) - 162, 0],
+			["RedVelvety", "RedVelvety", (width() / 2) - 162, 0],
+			["Marc", "Marc", (width() / 2) - 162, 0],
+			["CarterRedacted", "CarterRedacted", (width() / 2) - 162, 0],
+			["MarkyMark", "Mark", (width() / 2) - 162, 0]
 		],
 		noteTypes: {
 			"J": noteDefault,
@@ -200,7 +200,7 @@ export var charts = [
 			}
 		},
 		characters: [
-			["FaithPlate", "Faith Plate"]
+			["FaithPlate", "Faith Plate", 0, 0]
 		],
 		noteTypes: {
 			"J": noteDefault,
