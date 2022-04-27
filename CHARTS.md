@@ -4,7 +4,7 @@ You need:
 
 - Some JS knowledge
 - Some knowledge of the KaboomJS engine
-- A static file server, for your images and music.
+- A static file server, for your images and music. That, or download the game locally and place the files into there.
 - 2 700 x 400 (or similarly scaled) sprites for your background and foreground.
   - 1.333x: 525 x 300
   - 2x: 350 x 200
