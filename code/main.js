@@ -254,7 +254,7 @@ scene("Game", (idx, noTrans) => {
 				}
 				if(j.pos.x <= strumLine && j.empty) {
 					if (!j.normal) {
-						j.function();
+						j.function(j.empty, curBeat, j.type);
 					}
 					destroy(j);
 					players.empty?.play("talk");
@@ -401,7 +401,7 @@ scene("Game", (idx, noTrans) => {
 	
 	function makeNote(letter) {
 		if (charts[idx.song].noteTypes.hasOwnProperty(letter)) {
-			charts[idx.song].noteTypes[letter](underlay.time(), letter, prevStep, char);
+			charts[idx.song].noteTypes[letter](underlay.time(), prevStep, char);
 		}
 	}
 	function judgeHitsLol() {
@@ -417,7 +417,7 @@ scene("Game", (idx, noTrans) => {
 							hits++;
 							iv = true;
 							if (!j.normal) {
-								j.function();
+								j.function(j.empty, curBeat, j.type);
 							}
 							destroy(j); //Destroys note. No score.
 							noteClick.play("click");

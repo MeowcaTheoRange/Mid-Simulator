@@ -365,59 +365,23 @@ export var charts = [
 			["Tails", "Tails"]
 		],
 		noteTypes: {
-			"J": function(time, letter, prevStep, char) {
+			"J": function(time, prevStep, char) {
 				if (char == "Tails") {
-					add([
-						rect(0, 50),
-						pos(width(), 20),
-						("note" + prevStep),
-						"note",
-						"empty",
-						{
-							created: time,
-							empty: true,
-							normal: true,
-							type: letter
-						}
-					]);
+					customNote(time, "J", prevStep, 0, [0, 0, 0], true);
 				} else {
-					noteDefault(time, letter, prevStep, char)
+					noteDefault(time, "J", prevStep)
 				}
 			},
-			"T": function(time, letter, prevStep, char) {
+			"T": function(time, prevStep, char) {
 				if (char == "Tails") {
-					noteDefault(time, letter, prevStep, char)
+					noteDefault(time, "T", prevStep)
 				} else {
-					add([
-						rect(0, 50),
-						pos(width(), 20),
-						("note" + prevStep),
-						"note",
-						"empty",
-						{
-							created: time,
-							empty: true,
-							normal: true,
-							type: letter
-						}
-					]);
+					customNote(time, "T", prevStep, 0, [0, 0, 0], true);
 				}
 			},
-			"D": function(time, letter, prevStep) {
-				noteDefault(time, letter, prevStep);
-				add([
-					rect(0, 50),
-					pos(width(), 20),
-					("note" + prevStep),
-					"note",
-					"empty",
-					{
-						created: time,
-						empty: true,
-						normal: true,
-						type: letter
-					}
-				]);
+			"D": function(time, prevStep) {
+				noteDefault(time, "D", prevStep);
+				customNote(time, "D", prevStep, 0, [0, 0, 0], true);
 			}
 		},
 		makeScript: {
@@ -482,59 +446,23 @@ export var charts = [
 			["Tails", "Tails"]
 		],
 		noteTypes: {
-			"J": function(time, letter, prevStep, char) {
+			"J": function(time, prevStep, char) {
 				if (char == "Tails") {
-					add([
-						rect(0, 50),
-						pos(width(), 20),
-						("note" + prevStep),
-						"note",
-						"empty",
-						{
-							created: time,
-							empty: true,
-							normal: true,
-							type: letter
-						}
-					]);
+					customNote(time, "J", prevStep, 0, [0, 0, 0], true);
 				} else {
-					noteDefault(time, letter, prevStep, char)
+					noteDefault(time, "J", prevStep)
 				}
 			},
-			"T": function(time, letter, prevStep, char) {
+			"T": function(time, prevStep, char) {
 				if (char == "Tails") {
-					noteDefault(time, letter, prevStep, char)
+					noteDefault(time, "T", prevStep)
 				} else {
-					add([
-						rect(0, 50),
-						pos(width(), 20),
-						("note" + prevStep),
-						"note",
-						"empty",
-						{
-							created: time,
-							empty: true,
-							normal: true,
-							type: letter
-						}
-					]);
+					customNote(time, "T", prevStep, 0, [0, 0, 0], true);
 				}
 			},
-			"D": function(time, letter, prevStep) {
-				noteDefault(time, letter, prevStep);
-				add([
-					rect(0, 50),
-					pos(width(), 20),
-					("note" + prevStep),
-					"note",
-					"empty",
-					{
-						created: time,
-						empty: true,
-						normal: true,
-						type: letter
-					}
-				]);
+			"D": function(time, prevStep) {
+				noteDefault(time, "D", prevStep);
+				customNote(time, "D", prevStep, 0, [0, 0, 0], true);
 			}
 		},
 		makeScript: {
@@ -596,5 +524,22 @@ export function noteDefault(time, letter, prevStep) {
 				empty: false,
 				normal: true
 			}
+	]);
+}
+
+export function customNote(time, letter, prevStep, w, colorArray, empty, funclol) {
+	add([
+		rect(w, 50),
+		pos(width(), 20),
+		colorArray ? color(colorArray[0], colorArray[1], colorArray[2]) : color(0, 0, 0),
+		("note" + prevStep),
+		"note",
+		{
+			created: time,
+			type: letter,
+			function: funclol,
+			empty: empty,
+			normal: funclol != undefined ? false : true
+		}
 	]);
 }

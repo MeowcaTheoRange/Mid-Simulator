@@ -159,26 +159,27 @@ If you're not using custom character definitions (see below), you also have 2 mo
 	The default note is labelled as `noteDefault`, and can be used if you want a specific character to make a default note.
 	Here's a good use, to define a note that will be empty and full, for making something of a duet:
   ```js
-function(time, letter, prevStep) {
-	noteDefault(time, letter, prevStep); //The aformentioned default note value, with all of the variables being passed into it.
-	add([
-		rect(0, 50), //	Some visibility comp is required in order for the detection system to work. If you want your note to be invisible, set no color and make your rect's width 0.
-		pos(width(), 20), // Pos comp is required. Simply Kaboom rules.
-		("note" + prevStep), // Required for all notes, uses variable prevStep.
-		"note", // Required for all notes
-		{
-			created: time, // Required, uses variable time.
-			empty: true, // Determines whether the note can be pressed by the player or not.
-			normal: true, // If true, this note will not pass a function.
-			function: undefined, // A function that will be ran when the note is hit, if the note is not normal.
-			type: letter // Required, uses variable letter.
-		}
-	]);
+function(time, prevStep) {
+	noteDefault(time, "PUT YOUR CORRESPONDING LETTER HERE", prevStep); //The aformentioned default note value, with all of the variables being passed into it.
+	customNote(time, "PUT YOUR CORRESPONDING LETTER HERE", prevStep, 0, [0, 0, 0], true);
 }
   ```
+
+  > `customNote` is also a really good helper function for easily defining... custom notes. The internal variables `time, letter, prevStep, w, colorArray, empty,` and `funclol` are used as so:
+	>
+  > `time` is where you pass in the variable with the same name, just like `noteDefault`. This is same with `prevStep`.
+	>
+	> `letter` is where you put the letter that spawns the note, as a way of identification by other modules.
+	>
+	> `w` is the width of your note. You can't change the height, because... why would you need to. Default width is usually 10.
+	>
+	> `colorArray` is the color of your note. If you want to make a sprite note instead, you'll have to use Kaboom's `add()` function instead.
+	>
+	> `empty` determines if this note is empty, which means the player cannot hit this note. Instead, this note will be handled by a seperate "player", designated for only hitting these notes. Animations and actions will also be passed into another player, labelled `players.empty`.
+	>
+	> Finally, `funclol` is where you put the function that runs when you hit this note. Including this automatically makes your note "[not normal.](https://i.kym-cdn.com/entries/icons/original/000/037/442/you_are_not_normal.jpg)" Passing parameters are `empty`, `curBeat`, and `letter`.
+
   `time` will return the current time of the song in milliseconds.
-	
-  `letter` will return the letter that made this note.
 	
   `prevStep` will return the step that this note was made on.
 	
