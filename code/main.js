@@ -126,7 +126,7 @@ scene("Game", (idx, noTrans) => {
 	    sprite(char + song),
 			layer("JELLYBEAN"),
 			"dances",
-			(song == "faith" ? pos(0, 0) : pos((width() / 2) - 162, height() - 400)),
+			pos(charts[idx.song].characters[idx.character][2], charts[idx.song].characters[idx.character][3]),
 			scale(charts[idx.song].scale)
 		]);
 	} 
