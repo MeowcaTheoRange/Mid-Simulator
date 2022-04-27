@@ -511,7 +511,7 @@ export var charts = [
 	},
 ]
 
-export function noteDefault(time, letter, prevStep) {
+export function noteDefault(time, prevStep) {
 	add([
 			rect(10, 50),
 			pos(width(), 20),
@@ -520,7 +520,7 @@ export function noteDefault(time, letter, prevStep) {
 			"note",
 			{
 				created: time,
-				type: letter,
+				type: "J",
 				empty: false,
 				normal: true
 			}
