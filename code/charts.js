@@ -369,18 +369,18 @@ export var charts = [
 				if (char == "Tails") {
 					customNote(time, "J", prevStep, 0, [0, 0, 0], true);
 				} else {
-					noteDefault(time, "J", prevStep)
+					noteDefault(time, prevStep)
 				}
 			},
 			"T": function(time, prevStep, char) {
 				if (char == "Tails") {
-					noteDefault(time, "T", prevStep)
+					noteDefault(time, prevStep)
 				} else {
 					customNote(time, "T", prevStep, 0, [0, 0, 0], true);
 				}
 			},
 			"D": function(time, prevStep) {
-				noteDefault(time, "D", prevStep);
+				noteDefault(time, prevStep);
 				customNote(time, "D", prevStep, 0, [0, 0, 0], true);
 			}
 		},
@@ -450,18 +450,18 @@ export var charts = [
 				if (char == "Tails") {
 					customNote(time, "J", prevStep, 0, [0, 0, 0], true);
 				} else {
-					noteDefault(time, "J", prevStep)
+					noteDefault(time, prevStep)
 				}
 			},
 			"T": function(time, prevStep, char) {
 				if (char == "Tails") {
-					noteDefault(time, "T", prevStep)
+					noteDefault(time, prevStep)
 				} else {
 					customNote(time, "T", prevStep, 0, [0, 0, 0], true);
 				}
 			},
 			"D": function(time, prevStep) {
-				noteDefault(time, "D", prevStep);
+				noteDefault(time, prevStep);
 				customNote(time, "D", prevStep, 0, [0, 0, 0], true);
 			}
 		},
