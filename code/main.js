@@ -218,7 +218,7 @@ scene("Game", (idx, noTrans) => {
 				"bar"
 			]);
 		}
-		if (!get("note" + prevStep).length) {
+		if (get("note" + prevStep).length <= 0) {
 			makeNote(charts[idx.song].chart[Math.floor(prevStep)]);
 		}
 		if (!underlay.isPaused()) {
