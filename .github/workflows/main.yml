@@ -81,8 +81,9 @@ jobs:
         with:
           artifacts: "${{ github.workspace }}/build/*.zip"
           body: "Electron build of Mid-Sim, built automatically on ${{ runner.name }} (${{ runner.os }} ${{ runner.arch }})"
-          tag: "MSEB-${{ github.sha }}"
+          tag: "Mid-SimElectronBuild"
           name: "Mid-Sim Electron Build"
+          allowUpdates: true
           commit: "main"
           token: ${{ secrets.GITHUB_TOKEN }}
           
