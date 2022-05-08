@@ -35,27 +35,23 @@ jobs:
           mkdir build
           cd build
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform linux --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
-        
-      - name: Zip Linux Files
-        run: |
           ls
-          zip -r Mid_Simulator.Linux-amd64.zip . -i Mid-Simulator-linux-x64
+          zip -r Mid_Simulator.Linux-amd64.zip *
         
       - name: Stage For Windows
         run: |
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform windows --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
-        
-      - name: Zip Windows Files
-        run: |
-          zip -r Mid_Simulator.Windows-x86_64.zip . -i Mid-Simulator-windows-x64
+          ls
+          zip -r Mid_Simulator.Windows-x86_64.zip *
         
       - name: Stage For Mac
         run: |
-          nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform osx --arch universal --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
-        
-      - name: Zip Mac Files
-        run: |
-          zip -r Mid_Simulator.MacOSX-Universal.zip . -i Mid-Simulator-osx-universal
+          nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform osx --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
+          ls
+          zip -r Mid_Simulator.MacOSX-x8_64.zip *
+          nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform osx --arch arm64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
+          ls
+          zip -r Mid_Simulator.MacOSX-arm64.zip *
       
       - uses: ncipollo/release-action@v1
         with:
