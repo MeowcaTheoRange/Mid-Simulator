@@ -40,6 +40,8 @@ jobs:
         with:
           artifacts: "${GITHUB_WORKSPACE}/build/*"
           bodyFile: "README.md"
+          tag: "MidSimElectron"
+          commit: "main"
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Cleanup
