@@ -29,10 +29,16 @@ jobs:
       - name: Install Dependencies
         run: sudo npm install -g nativefier
         
+      - name: Stage Overall
+        run: |
+          cd ${{ github.workspace }}
+          zip -r Mid_Simulator.Source.zip *
+          mkdir build
+          mv Mid_Simulator.Source.zip build/Mid_Simulator.Source.zip
+      
       - name: Stage For Linux
         run: |
           cd ${{ github.workspace }}
-          mkdir build
           cd build
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform linux --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
           cd Mid-Simulator-linux-x64
@@ -74,8 +80,8 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "${{ github.workspace }}/build/*.zip"
-          body: "Electron build of Mid-Sim, built on ${{ runner.name }} (${{ runner.os }} ${{ runner.arch }})"
-          tag: "MidSimElectron-${{ github.sha }}"
+          body: "Electron build of Mid-Sim, built automatically on ${{ runner.name }} (${{ runner.os }} ${{ runner.arch }})"
+          tag: "Mid-Simulator Electron Build (${{ github.sha }})"
           commit: "main"
           token: ${{ secrets.GITHUB_TOKEN }}
           
