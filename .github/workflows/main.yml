@@ -36,22 +36,38 @@ jobs:
           cd build
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform linux --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
           ls
+          cd Mid-Simulator-linux-x64
           zip -r Mid_Simulator.Linux-amd64.zip *
         
       - name: Stage For Windows
         run: |
+          cd ..
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform windows --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
           ls
+          cd Mid-Simulator-win32-x64
           zip -r Mid_Simulator.Windows-x86_64.zip *
         
       - name: Stage For Mac
         run: |
+          cd ..
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform osx --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
           ls
-          zip -r Mid_Simulator.MacOSX-x8_64.zip *
+          cd Mid-Simulator-darwin-x64
+          zip -r Mid_Simulator.MacOSX-x86_64.zip *
+          cd ..
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform osx --arch arm64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
           ls
+          cd Mid-Simulator-darwin-arm64
           zip -r Mid_Simulator.MacOSX-arm64.zip *
+          
+      - name: "[Debug] Check Dirs"
+        run: |
+          cd ..
+          ls
+          cd ..
+          ls
+          cd ..
+          ls
       
       - uses: ncipollo/release-action@v1
         with:
