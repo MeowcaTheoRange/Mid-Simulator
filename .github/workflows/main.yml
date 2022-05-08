@@ -39,8 +39,8 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "${GITHUB_WORKSPACE}/build/*"
-          bodyFile: "README.md"
-          tag: "MidSimElectron"
+          body: "Electron build of Mid-Sim, built on ${RUNNER_NAME} (${RUNNER_OS} ${RUNNER_ARCH})"
+          tag: "MidSimElectron-${GITHUB_SHA}"
           commit: "main"
           token: ${{ secrets.GITHUB_TOKEN }}
           
