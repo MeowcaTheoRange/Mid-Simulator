@@ -31,7 +31,7 @@ jobs:
         
       - name: Stage For Linux
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}
+          cd ${{ github.workspace }}
           mkdir build
           cd build
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform linux --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
@@ -41,7 +41,7 @@ jobs:
         
       - name: Stage For Windows
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}/build
+          cd ${{ github.workspace }}/build
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform windows --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
           ls
           cd Mid-Simulator-win32-x64
@@ -49,12 +49,12 @@ jobs:
         
       - name: Stage For Mac
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}/build
+          cd ${{ github.workspace }}/build
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform osx --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
           ls
           cd Mid-Simulator-darwin-x64
           zip -r Mid_Simulator.MacOSX-x86_64.zip *
-          cd ${{ env.GITHUB_WORKSPACE }}/build
+          cd ${{ github.workspace }}/build
           nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${{ github.workspace }}/sprites/jellybeanTitle.png" --name "Mid-Simulator" --platform osx --arch arm64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
           ls
           cd Mid-Simulator-darwin-arm64
@@ -62,7 +62,7 @@ jobs:
           
       - name: "[Debug] Check Dirs"
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}/build
+          cd ${{ github.workspace }}/build
           ls
           cd ..
           ls
@@ -79,5 +79,5 @@ jobs:
           
       - name: Cleanup
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}
+          cd ${{ github.workspace }}
           rm -rf build
