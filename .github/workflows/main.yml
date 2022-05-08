@@ -38,6 +38,7 @@ jobs:
         
       - name: Zip Linux Files
         run: |
+          ls
           zip -r Mid_Simulator.Linux-amd64.zip . -i Mid-Simulator-linux-x64
         
       - name: Stage For Windows
