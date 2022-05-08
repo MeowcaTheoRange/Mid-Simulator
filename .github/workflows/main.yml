@@ -34,7 +34,7 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           mkdir build
           cd build
-          nativefier https://meowcatheorange.github.io/Mid-Simulator/ --platform linux --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
+          nativefier https://meowcatheorange.github.io/Mid-Simulator/ --icon "${GITHUB_WORKSPACE}/sprites/jellybeanTitle" --name "Mid-Simulator" --platform linux --arch x64 --portable --disable-context-menu --height 400 --width 700 --single-instance --zoom 1.0 --lang "en-US" --min-width 700 --min-height 400 --max-width 1400 --max-height 800
         
       - uses: ncipollo/release-action@v1
         with:
