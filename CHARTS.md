@@ -166,18 +166,18 @@ function(time, prevStep) {
   ```
 
   > `customNote` is also a really good helper function for easily defining... custom notes. The internal variables `time, letter, prevStep, w, colorArray, empty,` and `funclol` are used as so:
-	>
+  >
   > `time` is where you pass in the variable with the same name, just like `noteDefault`. This is same with `prevStep`.
-	>
-	> `letter` is where you put the letter that spawns the note, as a way of identification by other modules.
-	>
-	> `w` is the width of your note. You can't change the height, because... why would you need to. Default width is usually 10.
-	>
-	> `colorArray` is the color of your note. If you want to make a sprite note instead, you'll have to use Kaboom's `add()` function instead.
-	>
-	> `empty` determines if this note is empty, which means the player cannot hit this note. Instead, this note will be handled by a seperate "player", designated for only hitting these notes. Animations and actions will also be passed into another player, labelled `players.empty`.
-	>
-	> Finally, `funclol` is where you put the function that runs when you hit this note. Including this automatically makes your note "[not normal.](https://i.kym-cdn.com/entries/icons/original/000/037/442/you_are_not_normal.jpg)" Passing parameters are `empty`, `curBeat`, and `letter`.
+  >
+  > `letter` is where you put the letter that spawns the note, as a way of identification by other modules.
+  >
+  > `w` is the width of your note. You can't change the height, because... why would you need to. Default width is usually 10.
+  >
+  > `colorArray` is the color of your note. If you want to make a sprite note instead, you'll have to use Kaboom's `add()` function instead.
+  >
+  > `empty` determines if this note is empty, which means the player cannot hit this note. Instead, this note will be handled by a seperate "player", designated for only hitting these notes. Animations and actions will also be passed into another player, labelled `players.empty`.
+  >
+  > Finally, `funclol` is where you put the function that runs when you hit this note. Including this automatically makes your note "[not normal.](https://i.kym-cdn.com/entries/icons/original/000/037/442/you_are_not_normal.jpg)" Passing parameters are `empty`, `curBeat`, and `letter`.
 
   `time` will return the current time of the song in milliseconds.
 	
